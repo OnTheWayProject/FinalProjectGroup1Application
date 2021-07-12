@@ -1,633 +1,413 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-<meta charset="UTF-8">
-<!----模板帶入----->
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<head>
+		<title>On The Way</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/TwentyTemplate/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="${pageContext.request.contextPath}/TwentyTemplate/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="index is-preload">
+	
+	
+<c:choose>
+<c:when test="${not empty CurrentUser}">
 
+<c:set var="currentaccount" scope="session" value="${CurrentUser.account}"/>
+<c:set var="currentname" scope="session" value="${CurrentUser.customerName}"/>
+<c:set var="loginorout" scope="session" value="登出"/>
+</c:when>
 
-<title>On The Way Admin</title>
+<c:otherwise>
+<c:set var="currentaccount" scope="session" value="訪客帳號"/>
+<c:set var="currentname" scope="session" value="訪客"/>
+<c:set var="loginorout" scope="session" value="會員登入"/>
+</c:otherwise>
+</c:choose>
+	
+	
+	
+	
+	
+	
+	
+		<div id="page-wrapper">
 
-  <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+			<!-- Header -->
+				<header id="header" class="alt">
+					<h1 id="logo"><a href="<c:url value="/"/>">On<span> The Way</span></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="<c:url value="/"/>">首頁</a></li>
+<!-- 							<li class="submenu"> -->
+<!-- 								<a href="#">分頁</a> -->
+<!-- 								<ul> -->
+<!-- 									<li><a href="left-sidebar.html">Left Sidebar</a></li> -->
+<!-- 									<li><a href="right-sidebar.html">Right Sidebar</a></li> -->
+<!-- 									<li><a href="no-sidebar.html">No Sidebar</a></li> -->
+<!-- 									<li><a href="contact.html">Contact</a></li> -->
+<!-- 									<li class="submenu"> -->
+<!-- 										<a href="#">Submenu</a> -->
+<!-- 										<ul> -->
+<!-- 											<li><a href="#">Dolore Sed</a></li> -->
+<!-- 											<li><a href="#">Consequat</a></li> -->
+<!-- 											<li><a href="#">Lorem Magna</a></li> -->
+<!-- 											<li><a href="#">Sed Magna</a></li> -->
+<!-- 											<li><a href="#">Ipsum Nisl</a></li> -->
+<!-- 										</ul> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 							</li> -->
 
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+							<li class="submenu">
+								<a href="#">住宿</a>
+								<ul>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+							</li>
 
-</head>
-<!--以下NAV bar & 背景色-->
-<body  id="page-top">
+							<li class="submenu">
+								<a href="#">租車</a>
+								<ul>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+							</li>
 
- <!-- Page Wrapper -->
-    <div id="wrapper">
+							<li class="submenu">
+								<a href="#">活動</a>
+								<ul>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#">部落格</a>
+								<ul>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#">購物車</a>
+								<ul>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+							</li>
 
-        <!-- 導航區 -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- 藍色邊框 LOG區塊 -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                  
-                </div>
-                <div class="sidebar-brand-text mx-3"> <img src="img/on the way.png" alt="無法顯示圖片" width="80%"></div>
-            </a>
-
-          
-            </li>
-            <!-- 分隔線 -->
-            <hr class="sidebar-divider  my-0">
-
-      <!-- 會員管理 -->
-			<li class="nav-item">
-				<a class="nav-link" href="<c:url value='/elena' />">
-				<i class="fas fa-user-cog" aria-hidden="true"></i>
-				
-				<span>會員管理</span>
-				</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    
-                    </div>
-                </div>
-            </li>
-       <!-- 購物車 -->            
-			<li class="nav-item">
-				<a class="nav-link" href="<c:url value='/milton' />">
-				<i class="fas fa-user-cog" aria-hidden="true"></i>
-				<span>購物車</span>
-				</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    
-                    </div>
-                </div>
-			</li>
-			
-		<!-- 住宿商品管理 -->   <!-- 原本的 AllStay.html 改 joelin-->
-		    <li class="nav-item">
-				<a class="nav-link" href="<c:url value='/joelin' />">
-                    <i class="fas fa-house-user" aria-hidden="true"></i>
-                    <span>住宿商品管理</span>
-                </a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    
-                    </div>
-                </div>
-            </li>
+							<li id="myAccount" style="visibility:hidden" class="submenu">
+								<a>我的帳號</a>
+								<ul>
+									<li><a href="<c:url value="/elena/gotoCustomerHomePage"/>">會員中心</a></li>
+									<li><a href="right-sidebar.html">訂單查詢</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+							</li>
 						
-		<!-- 租車商品管理 -->	<!-- 原本的 car.html 改 /wade-->			
-			<li class="nav-item">
-			    <a class="nav-link" href="<c:url value='/wade' />">
-			       <i class="fas fa-car-alt" aria-hidden="true"></i>
-			       <span>交通商品管理</span>
-			</a>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    
-                    </div>
-                </div>
-			</li>
 							
-		<!-- 活動商品管理 -->	<!-- 原本的 Event.html 改 /sylvia -->
-			<li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
-                    aria-expanded="true" aria-controls="collapse3">
-                    <i class="far fa-calendar-check " aria-hidden="true"></i>
-			        <span>活動商品管理</span>
-			    </a> 
-			    <div id="collapse3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-			       
-			          <a class="collapse-item" href="<c:url value='/sylvia' />">特色體驗</a>
-				      <a class="collapse-item" href="SpEvent.html">城市尋寶</a>		
-				
-				     </div>
-                </div>
+							<li id="loginHref" style="visibility:visible"><a href="<c:url value="/elena"/>" class="button primary">登入</a></li>
+							<li id="register" style="visibility:visible"><a href="<c:url value="/elena/registration"/>" class="button primary">註冊</a></li>
+							<li id="LoginName" style="visibility:hidden">親愛的${currentname}，歡迎回來！</li>
+							<li id="logoutHref" style="visibility:hidden"><a href="<c:url value="/elena/logout"/>" class="button primary">登出</a></li>
+							
+						</ul>
+					</nav>
+				</header>
 
-            </li>
-            
-          <!-- 部落格管理 -->  <!-- 原本的 Blogs.html 改 /bos --> 
-				<li class="nav-item">		
-					<a class="nav-link" href="<c:url value='/bos' />">
-					     <i class="fas fa-clipboard-list" aria-hidden="true"></i>
-					<span>部落格管理</span></a>
-            </li>
-				
+			<!-- Banner -->
+				<section id="banner">
 
-  <!-- 導航區結束 -->  
+					<!--
+						".inner" is set up as an inline-block so it automatically expands
+						in both directions to fit whatever's inside it. This means it won't
+						automatically wrap lines, so be sure to use line breaks where
+						appropriate (<br />).
+					-->
+					<div class="inner">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+						<header>
+							<h2>On The Way</h2>
+						</header>
+						<p>歡迎來到<strong>On The Way</strong>
+						<br />
+						在這裡
+						<br />
+						與你心愛的人一起創造你們的專屬回憶吧！</p>
+						<footer>
+							<ul class="buttons stacked">
+								<li><a href="#main" class="button fit scrolly">了解 On The Way</a></li>
+							</ul>
+						</footer>
 
-            <!-- Sidebar Message -->
-            <!--
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
-            -->
-        </ul>
-        <!-- End of Sidebar -->
+					</div>
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+				</section>
 
-            <!-- Main Content -->
-            <div id="content">
+			<!-- Main -->
+				<article id="main">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<header class="special container">
+						<span class="icon solid fa-chart-bar"></span>
+						<h2>「旅行是唯一讓你付出，卻能變得更富有的事情。」<br>
+						<strong>Travel</strong> is the Only Thing You Buy that Makes You <strong>Richer.</strong>
+						<br />
+						</h2>
+						<br>
+						<br>
+						<p>放下旅行指南，一切隨緣。不需要思考下一個目的地，隨心所欲。有時候，不小心亂入一間街角的餐廳，都有可能是出乎意料的相遇。往往不在計畫裡的計劃，總會在記憶深處令人回味。
+						<br />
+						
+						<br />
+						</p>
+					</header>
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+					<!-- One -->
+						<section class="wrapper style2 container special-alt">
+							<div class="row gtr-50">
+								<div class="col-8 col-12-narrower">
 
-                    <!-- 上方搜尋區 -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="搜尋"
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+									<header>
+										<h2>「旅行是段與自己獨處的時光，既浪漫又艱辛，但旅行能讓人找到自己。｣</h2>
+									</header>
+									<p>旅行令人著迷，一路上所遇所見都能為內心帶來啟發與改變，那是種源自於心靈，能真切的感受到自我成長與蛻變的過程，讓我們更加成熟更加謙虛更加知足，最終我們將趨近於我們靈魂更深層的自己。</p>
+									<br>
+									<p>在On The Way, 你可以找到專屬於你的浪漫旅行</p>
+									<footer>
+										<ul class="buttons">
+											<li><a href="#" class="button">我們提供的行程</a></li>
+										</ul>
+									</footer>
 
-                   
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+								</div>
+								<div class="col-4 col-12-narrower imp-narrower">
 
-                        <!-- Nav Item - Alerts -->
-                        <!--
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                -->
-                                <!-- Counter - Alerts -->
-                                <!--
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            -->
-                            <!-- Dropdown - Alerts -->
-                            <!--
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-                        -->
-                        <!-- Nav Item - Messages -->
-                        <!--
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                -->
-                                <!-- Counter - Messages -->
-                                <!--
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            -->
-                            <!-- Dropdown - Messages -->
-                            <!--
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
+									<ul class="featured-icons">
+										<li><span class="icon fa-clock"><span class="label">Feature 1</span></span></li>
+										<li><span class="icon solid fa-volume-up"><span class="label">Feature 2</span></span></li>
+										<li><span class="icon solid fa-laptop"><span class="label">Feature 3</span></span></li>
+										<li><span class="icon solid fa-inbox"><span class="label">Feature 4</span></span></li>
+										<li><span class="icon solid fa-lock"><span class="label">Feature 5</span></span></li>
+										<li><span class="icon solid fa-cog"><span class="label">Feature 6</span></span></li>
+									</ul>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                         -->
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">XXXXXX</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    帳戶管理
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    系統管理
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    登出
-                                </a>
-                            </div>
-                        </li>
+								</div>
+							</div>
+						</section>
 
-                    </ul>
+					<!-- Two -->
+						<section class="wrapper style1 container special">
+							<div class="row">
+								<div class="col-4 col-12-narrower">
 
-                </nav>
-                <!-- End of Topbar -->
+									<section>
+										<span class="icon solid featured fa-check"></span>
+										<header>
+											<h3>This is Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+								</div>
+								<div class="col-4 col-12-narrower">
 
-                    <!-- Page Heading -->
-                    <!--
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
-                     -->
-                    <!-- Content Row -->
-                    <div class="row">
+									<section>
+										<span class="icon solid featured fa-check"></span>
+										<header>
+											<h3>Also Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                會員人數成長</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+								</div>
+								<div class="col-4 col-12-narrower">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                本月整體營業額</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+									<section>
+										<span class="icon solid featured fa-check"></span>
+										<header>
+											<h3>Probably Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                住宿營業額</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$118,250</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-home fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+								</div>
+							</div>
+						</section>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                交通營業額</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$64,500</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-car fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+					<!-- Three -->
+						<section class="wrapper style3 container special">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">活動營業額
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">$1433</div>
-                                                </div>
+							<header class="major">
+								<h2>Next look at this <strong>cool stuff</strong></h2>
+							</header>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+							<div class="row">
+								<div class="col-6 col-12-narrower">
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-secondary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                                文章增加數</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+									<section>
+										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+										<header>
+											<h3>A Really Fast Train</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									</section>
 
-                    <!-- Content Row -->
+								</div>
+								<div class="col-6 col-12-narrower">
 
-                    <div class="row">
+									<section>
+										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+										<header>
+											<h3>An Airport Terminal</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									</section>
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">營業額成長</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                           
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                           <!-- <div class="dropdown-header"></div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>-->
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6 col-12-narrower">
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">各類營業額佔比</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        </a>
-                                       
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> 住宿
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 交通
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> 活動
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+									<section>
+										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+										<header>
+											<h3>Hyperspace Travel</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									</section>
 
-                    <!-- Content Row -->
-                    <div class="row">
+								</div>
+								<div class="col-6 col-12-narrower">
 
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+									<section>
+										<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+										<header>
+											<h3>And Another Train</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									</section>
 
-                           
-                           
+								</div>
+							</div>
 
-                        
-                            
-                            
+							<footer class="major">
+								<ul class="buttons">
+									<li><a href="#" class="button">See More</a></li>
+								</ul>
+							</footer>
 
-                        </div>
-                    </div>
+						</section>
 
-                </div>
-                <!-- /.container-fluid -->
+				</article>
 
-            </div>
-            <!-- End of Main Content -->
+			<!-- CTA -->
+				<section id="cta">
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+					<header>
+						<h2>Ready to do <strong>something</strong>?</h2>
+						<p>Proin a ullamcorper elit, et sagittis turpis integer ut fermentum.</p>
+					</header>
+					<footer>
+						<ul class="buttons">
+							<li><a href="#" class="button primary">Take My Money</a></li>
+							<li><a href="#" class="button">LOL Wut</a></li>
+						</ul>
+					</footer>
 
-        </div>
-        <!-- End of Content Wrapper -->
+				</section>
 
-    </div>
-    <!-- End of Page Wrapper -->
+			<!-- Footer -->
+				<footer id="footer">
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+					<ul class="icons">
+						<li><a href="#" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands circle fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands circle fa-google-plus-g"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					</ul>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">確定要登出嗎?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">如果確定使用完本服務,請按下"登出"。</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
-                    <a class="btn btn-primary" href="login.html">登出</a>
-                </div>
-            </div>
-        </div>
-    </div>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+				</footer>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+		</div>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+		<!-- Scripts -->
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/jquery.min.js"></script>
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/jquery.dropotron.min.js"></script>
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/jquery.scrolly.min.js"></script>
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/jquery.scrollex.min.js"></script>
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/browser.min.js"></script>
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/breakpoints.min.js"></script>
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/util.js"></script>
+			<script src="${pageContext.request.contextPath}/TwentyTemplate/assets/js/main.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+var currentUser = "${CurrentUser}";
+var customerName = "${CurrentUser.customerName}";
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+window.onload = function(){
 
-</body>
+if("${loginSuccess}" == "登入成功!"){
+	alert("${name}" + "," + "歡迎回來!");
+// 	Swal.fire("${name}" + "," + "歡迎回來!");
+}
 
+
+// 有登入:隱藏登入標籤 & 沒登入:隱藏登出標籤，秀登入標籤
+var logoutHref = document.getElementById("logoutHref");
+var loginHref = document.getElementById("loginHref");
+var myAccount = document.getElementById("myAccount");
+var register = document.getElementById("register");
+var LoginName = document.getElementById("LoginName");
+
+	if (!customerName) {
+			logoutHref.hidden = true;
+			myAccount.hidden = true;
+			LoginName.hidden = true;
+			loginHref.style.visibility = "visible";
+			register.style.visibility = "visible";
+		}
+		if (customerName) {
+			logoutHref.style.visibility = "visible";
+			myAccount.style.visibility = "visible";
+			LoginName.style.visibility = "visible";
+			loginHref.style.visibility ="hidden";
+			register.style.visibility ="hidden";
+			
+// 			loginHref.hidden = true;
+// 			register.hidden = true;
+		}
+}
+</script>
+<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+
+
+
+
+	</body>
 </html>

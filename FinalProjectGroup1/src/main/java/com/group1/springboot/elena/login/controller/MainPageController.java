@@ -3,6 +3,8 @@ package com.group1.springboot.elena.login.controller;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -80,6 +82,9 @@ public class MainPageController {
 		}
 		customer.setCustomerPhoto(blob);
 		loginService.insertCustomer(customer);
+		//寄註冊認證信
+		mailService.sendMailRegistration(customer);
+		
 		String ext = SystemUtils.getExtFilename(name);
 
 		try {
@@ -113,7 +118,7 @@ public class MainPageController {
 	
 		 if(user.equals("Admin123") && pwd.equals("Admin123")) {
 			
-			return "redirect:/exciseSelectAll";
+			return "redirect:/gotoAdminHomePage";
 		}
 		CustomerBean bean = loginService.checkLogin(user, pwd);
 		
@@ -130,7 +135,7 @@ public class MainPageController {
 			return "redirect:/";
 		}
 	
-		ra.addFlashAttribute("Failed", "帳號密碼有誤");
+		ra.addFlashAttribute("Failed", "帳號或密碼有誤!");
 		return "redirect:/elena/login";
 	}
 	
@@ -163,5 +168,17 @@ public class MainPageController {
 		return "redirect:/";
 	}
 
+	@ModelAttribute("genderList1")
+	public Map<String, String> getAll22(){
+		Map<String, String> map = new HashMap<>();
+		map.put("男", "男");
+		map.put("女", "女");
+		
+		return map;
+		
+	}
+	
+	
+	
 
 }

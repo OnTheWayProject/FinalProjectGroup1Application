@@ -51,6 +51,11 @@ public class AdminController {
 	public String gotoexciseLoginPage() {
 		return "Elena/loginSystem";
 	}
+	
+	@GetMapping("/gotoAdminHomePage")
+	public String gotoAdminHomePage() {
+		return "Elena/AdminHomePage";
+	}
 
 	@GetMapping("/exciseSelectAll")
 	public String gotoexciseSelectAll() {
