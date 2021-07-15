@@ -1,52 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-<style>
- .adminPage{
-  height: 500px;
-  width: 800px;
 
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 8%;
-  margin-bottom: 55px;
-  padding: 35px 50px 20px 50px; 
-  background-color: white;
-  border: 1px solid #D0D0D0;
-  border-radius: 3% 3% 3% 3%;
-  
-  text-align: center;
-    
-    }
-    
-    
-    
-    </style>
-
-    <title>管理者首頁</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="${pageContext.request.contextPath}/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<title>On The Way Admin-Stay</title>
+<c:url value="/"></c:url>
+ <!-- Custom fonts for this template -->
+    <link  href="<%=basePath%>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        href="<%=basePath%>https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/AdminTemplate/css/sb-admin-2.min.css" rel="stylesheet">
-    
+    <!-- Custom styles for this template -->
+    <link href="<%=basePath%>css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="<%=basePath%>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
+
 
 <body id="page-top">
 
@@ -57,10 +41,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/gotoAdminHomePage'/>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
+                    
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="${pageContext.request.contextPath}/AdminTemplate/img/on the way.png" alt="無法顯示圖片" width="80%"></div>
+                <div class="sidebar-brand-text mx-3"><img src="<%=basePath%>img/on the way.png" alt="無法顯示圖片" width="80%"></div>
             </a>
 
             <!-- 分隔線 -->
@@ -68,7 +53,7 @@
 
               <!-- 用戶管理 -->
             <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/exciseSelectAll'/>">
+                <a class="nav-link" href="user.html">
             
                     <i class="fas fa-user-cog" aria-hidden="true"></i>
                     <span>用戶管理</span>
@@ -81,15 +66,10 @@
                     </div>
                 </div>
             </li>
-               <li class="nav-item">
-                <a class="nav-link" href="Blogs.html">
-                    <i class="fas fa-clipboard-list" aria-hidden="true"></i>
-                    <span>訂單管理</span></a>
-            </li>
 
             <!-- 住宿商品管理 -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1"
+                <a class="nav-link collapsed" href="Stay.html" data-toggle="collapse" data-target="#collapse1"
                     aria-expanded="true" aria-controls="collapse1">
                     <i class="fas fa-house-user" aria-hidden="true"></i>
                     <span>住宿商品管理</span>
@@ -108,18 +88,6 @@
 
           <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-<<<<<<< HEAD
-			    <a class="nav-link" href="<c:url value='/wade' />">
-			       <i class="fas fa-car-alt" aria-hidden="true"></i>
-			       <span>交通商品管理</span>
-			</a>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    
-                    </div>
-                </div>
-			</li>
-=======
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2"
                     aria-expanded="true" aria-controls="collapse2">
                     <i class="fas fa-car-alt" aria-hidden="true"></i>
@@ -134,19 +102,18 @@
                     </div>
                 </div>
             </li>
->>>>>>> e10cde8d8da6357096ea8c243bd8b98c4a96bbdb
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Event -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
-                    aria-expanded="true" aria-controls="collapse3">
-                    <i class="far fa-calendar-check " aria-hidden="true"></i>
+                <a class="nav-link collapsed" href="Event.html" data-toggle="collapse" data-target="#collapse3"
+                    aria-expanded="true" aria-controls="collapse3" >
+                    <i class="far fa-calendar-check " aria-hidden="true" ></i>
                     <span>活動商品管理</span>
                 </a>
                 <div id="collapse3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                       <!--  <h6 class="collapse-header">Login Screens:</h6> -->
-                        <a class="collapse-item" href="Event.html">特色體驗</a>
+                        <a class="collapse-item" href="#">特色體驗</a>
                         <a class="collapse-item" href="SpEvent.html">城市尋寶</a>
                        
                     </div>
@@ -154,31 +121,22 @@
 
             </li>
 
-          <!-- Nav Item - Tables -->
+          <!-- Nav Item - Blog -->
             <li class="nav-item">
                 <a class="nav-link" href="Blogs.html">
                     <i class="fas fa-clipboard-list" aria-hidden="true"></i>
                     <span>部落格管理</span></a>
             </li>
             
-             <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/'/>">
-                    <i class="fas fa-house-user" aria-hidden="true"></i>
-                    <span>返回首頁</span>
-                </a>
-
-            </li>
-  
-            
-            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            
+                 
+    
         </ul>
         <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
+        
+         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -188,9 +146,11 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
 
                     <!-- Topbar Search -->
                     <form
@@ -253,6 +213,8 @@
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
+
+                                    
                                     <div>
                                         <div class="small text-gray-500">December 12, 2019</div>
                                         <span class="font-weight-bold">A new monthly report is ready to download!</span>
@@ -300,7 +262,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="${pageContext.request.contextPath}/AdminTemplate/img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -312,7 +274,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="${pageContext.request.contextPath}/AdminTemplate/img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -324,7 +286,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="${pageContext.request.contextPath}/AdminTemplate/img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -358,7 +320,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="${pageContext.request.contextPath}/AdminTemplate/img/undraw_profile.svg">
+                                    src="<%=basePath%>img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -387,69 +349,163 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
+   
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-  <h1 class="h3 mb-4 text-gray-800">管理者後台
-                    </h1>
+
                     <!-- Page Heading -->
-<div class="adminPage" align="center">
-<table cellspacing="1" cellpadding="1" border="1" width="100%">
-<tr>
-<td>用戶管理
-</td>
-<td>訂單管理
-</td>
+                    <h1 class="h3 mb-2 text-gray-800"> 住宿系統管理 </h1>
+                    <P align="right"> <a href="<c:url value='/queryStay'/>">查看所有旅館</a> 
+                    </P>
+                   <!-- 
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                         -->
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">修改旅館項目</h6>
+                        </div>
+                        <div class="card-body">
+                         
+                
+        
+<br>
 
-</tr>
+<%-- 	    <form:form method="POST" modelAttribute="place" >  --%>
 
-<tr>
+	<form:form method="POST" modelAttribute="stay" enctype='multipart/form-data'>
+	
+	<!-- <c:choose>
+		<c:when test='${event.id == null}'>
+	 <tr>
+		    	<td>&nbsp;</td>
+		    	<td>
+	   	  		   &nbsp;
+	   	  		</td>
+		    </tr>
+        </c:when>	   
+    	<c:otherwise>
+	 	 <tr>
+	       <td>編號：<br>&nbsp;</td>
+	   	   <td><form:hidden path='id'/>
+	   	    	${event.id}<br>&nbsp;
+	   	   </td>
+	    </tr>
+       </c:otherwise>   
+       
+    </c:choose>    
 
-<td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/usericons.png" alt="無法顯示圖片" width="30%"></a>
-</td>
-<td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/shoppingcart.jpg" alt="無法顯示圖片" width="30%"></a>
-</td>
-</tr>
+	  -->
+	  
+	  <!-- group1  -->
+	  <div class="form-group row"> 
+	   <div class="col-sm-6 mb-3 mb-sm-0">
+	   <tr>
+	      <td>編號：</td>
+	      <td  width=''>
+	      	<form:input path="number" style='width:100%;height:40px;' /><br>&nbsp;	
+		      <form:errors path='number' cssClass="error"/>
+		  </td>
+	   </tr>
+	   </div>
+		 <div class="col-sm-6">
+	   
+	    <tr>
+	      <td>電話：</td>
+	   	  <td>
+	   	  	 <form:input path="phone" style='width:100%;height:40px;'  /><br>&nbsp;
+	   	  	 <form:errors path='phone'  cssClass="error" />
+	   	  </td>
+	      </tr>
+	 </div> 
+	 </div>
+	   
+	   
+	  <!-- group2  --> 
+	  <div class="form-group row">
+	    <div class="col-sm-12 mb-3 mb-sm-0">
+	      <td>飯店：</td>
+	      <td  width='360'>
+	      	<form:input path="hotel" style='width:100%;height:40px;' /><br>&nbsp;	
+		      <form:errors path='hotel' cssClass="error"/>
+		  </td>
+		</div>
+		<div class="col-sm-12 mb-3 mb-sm-0">
+		   <td>地址：</td>
+	   	  <td>
+	      	<form:input path="address" style='width:100%;height:40px;' /><br>&nbsp;	
+		      <form:errors path='address' cssClass="error"/>
+		  </td>
+		</div>  
+	     </tr>
+	   
+	 </div>
+	   
+	   
+	   <!-- group3  -->
+	 <div class="form-group row"> 
+	   <div class="col-sm-6 mb-3 mb-sm-0">
+	   <tr>
+	      <td>經度：</td>
+	        <td  width=''>
+	      	<form:input path="longitude" style='width:100%;height:40px;' /><br>&nbsp;	
+		      <form:errors path='longitude' cssClass="error"/>
+		  </td>
+		  </tr>
+		 </div>
+		 <div class="col-sm-6">
+		 <tr>
+	      <td>緯度：</td>
+		  <td  width=''>
+		  <form:input path='latitude' style='width:100%;height:40px;' /><br>&nbsp;	
+		      <form:errors path='latitude' cssClass="error"/>
+		  </td>
+	   </tr>
+	 </div> 
+	 </div>
+	 
+	 	   
+	 <!-- group4  --> 
+	   <div class="form-group row"> 
+	    <div class="col-sm-12 mb-3 mb-sm-0">	  
+	   	  <tr>
+	      <td>內容：</td>
+	   	  <td>
+	   	      <form:input path="content" style='width:100%;height:40px;'  /><br>&nbsp;
+	   	  	  <form:errors path='content'  cssClass="error" />
+	   	  </td>
+	   	  </tr>
+	   	  </div>
+	   	  <div class="col-sm-12 mb-3 mb-sm-0">
+	   	  <tr>
+	   	  <td>照片：<br>&nbsp;</td>
+	   	  <td>
+	   	  	<form:input path="stayImage" type='file'  /><br>&nbsp;
+	   	  	 <form:errors path="stayImage"  cssClass="error" />
+	   	  </td>
+	   </tr>
+	   </div>
+	   <div class="col-sm-12 mb-3 mb-sm-0">
+	   <tr>
+	    <td colspan='4' align='center'><br>&nbsp;
+	      <input type='submit' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>
+        </td>
+	   </tr>
+	   </div>
+	   
+	   </div>
+		 
+	</form:form>
 
-<tr>
-<td>住宿商品管理
-</td>
-<td>交通商品管理
-</td>
-
-</tr>
-
-<tr>
-<td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/hotelsicon.png" alt="無法顯示圖片" width="30%"></a>
-</td>
-<td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/rentcar.jpg" alt="無法顯示圖片" width="30%"></a>
-</td>
-
-</tr>
+<br>
+<!-- <a href="<c:url value='/'/> " >回前頁</a> -->
 
 
-<tr>
-<td>活動商品管理
-</td>
-<td>部落格管理
-</td>
+                        </div>
+                    </div>
 
-</tr>
-
-<tr>
-<td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/eventsicon.png" alt="無法顯示圖片" width="30%"></a>
-</td>
-<td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/blogicons.png" alt="無法顯示圖片" width="30%"></a>
-</td>
-
-</tr>
-
-
-
-
-</table>
-
- 
                 </div>
                 <!-- /.container-fluid -->
 
@@ -498,14 +554,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%=basePath%>vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<%=basePath%>vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="${pageContext.request.contextPath}/AdminTemplate/js/sb-admin-2.min.js"></script>
+    <script src="<%=basePath%>js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="<%=basePath%>vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<%=basePath%>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="<%=basePath%>js/demo/datatables-demo.js"></script>
 
 </body>
 

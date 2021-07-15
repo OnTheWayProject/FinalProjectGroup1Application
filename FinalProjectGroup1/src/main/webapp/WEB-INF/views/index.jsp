@@ -78,7 +78,11 @@
 							</li>
 
 							<li class="submenu">
+<<<<<<< HEAD
 								<a href="<c:url value='/wadeClient'/>">租車</a>
+=======
+								<a href="#">租車</a>
+>>>>>>> e10cde8d8da6357096ea8c243bd8b98c4a96bbdb
 								<ul>
 									<li><a href="left-sidebar.html">Left Sidebar</a></li>
 									<li><a href="right-sidebar.html">Right Sidebar</a></li>
