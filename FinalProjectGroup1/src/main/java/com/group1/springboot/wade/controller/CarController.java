@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Blob;
 import java.sql.Clob;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,6 +85,7 @@ public class CarController {
 //	}
 	
 
+	
 
 		// insert後的跳轉 SAVE
 		@PostMapping("/wade")
@@ -194,7 +197,7 @@ public class CarController {
 				Blob blob = SystemUtils.pathToBlob(sa[8]);	
 				String mimeType = context.getMimeType(sa[8]);
 				
-				Car car = new Car(id,sa[1],price,seat,suitcase,handbag,sa[6],sa[7],blob,mimeType);
+				Car car = new Car(id,sa[1],price,seat,suitcase,handbag,sa[6],sa[7],blob,mimeType,sa[9]);
 				
 				carService.save(car);
 				count++;
@@ -212,7 +215,40 @@ public class CarController {
 	}
 	
 	
+//	@DeleteMapping("/deleteCar/{id}")
+//	public String deleteCar(@PathVariable("id")Long id) {
+//		carService.deleteCar(id);
+//		return "redirect:/queryCar";
+//	}
+	@PostMapping("/deleteCar")
+	public @ResponseBody Boolean deleteCar(@RequestParam Long blogId ) {
+		Boolean result = true;
+		
+		try {
+			Car bean = carService.findById(blogId);
+			System.out.println(bean);
+			carService.deleteCar(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		}
+		
+		return result;
+	}
 	
+	
+	@PostMapping(value="/wade/searchClient")
+	public@ResponseBody List<Car> searchClient(
+			@RequestParam String address,
+			@RequestParam String date
+			
+			){
+		System.out.println(date);
+		System.out.println(address);
+		
+		List<Car> lists = carService.searchClient(date, address);
+		return lists;
+	} 
 }
 
 

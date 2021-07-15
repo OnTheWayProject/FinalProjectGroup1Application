@@ -38,10 +38,11 @@ public class Car {
 	
 	private Double  handbag;             //手提袋
 	
-	private String address;              //註解
+	private String address;              //地點
 	
 	private String mimeType;
-
+	
+	private String date;
 	
 	private String content;                //內容，沒用到
 	
@@ -56,7 +57,7 @@ public class Car {
 	
 	
 	public Car(Long id, String name, Integer price,Integer seat, Double suitcase, Double handbag, String address, String content,
-			Blob picture ,String mimeType) {
+			Blob picture ,String mimeType, String date) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -68,11 +69,12 @@ public class Car {
 		this.content = content;
 		this.picture = picture;
 		this.mimeType = mimeType;
+		this.date = date;
 	}
 
 
 	public Car(Long id, String name, Integer price, Integer seat, Double suitcase, Double handbag, String address, String content,
-			String mimeType, Blob picture, MultipartFile carImage, String pictureString) {
+			String mimeType, Blob picture, MultipartFile carImage, String pictureString, String date) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -86,6 +88,7 @@ public class Car {
 		this.picture = picture;
 		this.carImage = carImage;
 		this.pictureString = pictureString;
+		this.date =date;
 	}
 
 
@@ -95,6 +98,20 @@ public class Car {
 	}
   
 	
+	
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+	
+
 
 	public Integer getSeat() {
 		return seat;
@@ -245,6 +262,8 @@ public class Car {
 		builder.append(content);
 		builder.append(", picture=");
 		builder.append(picture);
+		builder.append(", date=");
+		builder.append(date);
 		builder.append("]");
 		return builder.toString();
 	}

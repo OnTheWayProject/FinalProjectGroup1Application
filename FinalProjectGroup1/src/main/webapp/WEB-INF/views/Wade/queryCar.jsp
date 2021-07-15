@@ -11,17 +11,18 @@
 <meta charset="UTF-8">
 <title>On The Way Admin-Car</title>
  <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/AdminTemplate/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+<!-- 
 <script>
 
 let dataArea = null; 
@@ -64,6 +65,7 @@ window.addEventListener('load',function(){
 	}
 		
 	});
+	
 		
 })
 
@@ -76,11 +78,12 @@ function showData(textData){
 	} else {		
 	segment += "<tr><th colspan='8'>共計" + size + "筆資料</th><tr>";
 	*/
-	segment += "<thead ><tr><th width='7%'>&nbsp; 編號 </th><th width='17%'>&nbsp; 名稱 </th><th width='8%'>&nbsp; 價格 </th><th width='7%'>&nbsp; 座位 </th><th width='13%'>&nbsp; 行李箱 </th><th width='13%'>&nbsp; 手提袋 </th><th width='10%'>&nbsp; 備註 </th><th width='11%'>&nbsp; 照片 </th></tr></thead>";
+	segment += "<thead ><tr><th width='3%'>&nbsp; 編號 </th><th width='10%'>&nbsp; 名稱 </th><th width='8%'>&nbsp; 價格 </th><th width='7%'>&nbsp; 座位 </th><th width='10%'>&nbsp; 行李箱 </th><th width='10%'>&nbsp; 手提袋 </th><th width='11%'>&nbsp; 地點 </th><th width='11%'>&nbsp; 日期 </th><th width='11%'>&nbsp; 照片 </th><th width='5%'>&nbsp; 刪除 </th></tr></thead>";
 	for(n = 0 ; n < cars.length ; n++ ){
 		let car = cars[n];
 		let tmpurl1 ="<c:url value='/modifyCar/' />" + car.id;
     	let tmpurl0 = "<a href='" + tmpurl1 + "'>" + car.name  + "</a>";
+    	let tmpurl2 ="<c:url value='/deleteCar/' />" + car.id;
     //	console.log( "tmpurl0",tmpurl0);
         segment += "<tbody >";
 		segment += "<tr >";
@@ -91,8 +94,10 @@ function showData(textData){
 		segment += "<td >&nbsp;"+ car.suitcase + '大行李' +"&nbsp;</td>";
 		segment += "<td >&nbsp;"+ car.handbag  + '手提袋' +"&nbsp;</td>";
 		segment += "<td >&nbsp;"+ car.address  + "&nbsp;</td>";
-	//	segment += "<td ><a href="deletecar/${car.id}">Delete</a></td>";
+		segment += "<td >&nbsp;"+ car.date  + "&nbsp;</td>";
 		segment += "<td ><img width='100' height='60' src='" +car.pictureString  +"'></td>";
+		
+		segment += "<td >&nbsp;<button type='button' id='deleteData' data-href='" + tmpurl2 + "' data-value='"+ car.id +"'>刪除</button>&nbsp;</td>";
 		
 		segment += "</tr>";
 		segment += "</tbody>";
@@ -104,7 +109,7 @@ function showData(textData){
 }
 
 </script>
-
+ -->
 
 </head>
 <body>
@@ -121,7 +126,7 @@ function showData(textData){
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="img/on the way.png" alt="無法顯示圖片" width="80%"></div>
+                <div class="sidebar-brand-text mx-3"><img src="images/on the way.png" alt="無法顯示圖片" width="80%"></div>
             </a>
 
             <!-- 分隔線 -->
@@ -431,64 +436,40 @@ function showData(textData){
                 <div class="container-fluid"> 
                 
 <!-- Page Heading -->    
- <h1 class="h3 mb-2 text-gray-800">租車系統管理 </h1>
+ <h1 class="h3 mb-2 text-gray-800">租車管理 </h1>
 <p align=right><a href="<c:url value='/wade'/>"> 新增租車</a></p>
  
  <!-- DataTales Example -->
      <div class="card shadow mb-4">
+       	  <!--table 標題 -->
           <div class="card-header py-3">
                    
               <h6 class="m-0 font-weight-bold text-primary">所有車輛總覽</h6>
-               </div> 
-                      <div class="table-responsive">
-                                
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                              </table>         
-                                   </div> 
-<div class="card-body" >                            
-<div class="row">
-<div class="col-sm-12 col-md-6">
-<div class="dataTables_length" id="dataTables_length">
-</div>
-</div>
-</div>
-
-<div class="col-sm-12 col-md-6">
-<div class="input-group">
-
-<input id='restname' type='text' class="form-control bg-light border-0 small" placeholder aria-controls="dataTable" describedby="basic-addon2"> 
-<div class="input-group-append">
-<button class="btn btn-primary" id='query' type="button" >
-<i class="fas fa-search fa-sm"></i>
-</button>
-</div>
-</div>
-</div>
-</div>
-
-<font color='red' > &nbsp;&nbsp;&nbsp; ${successMessage} </font> &nbsp;
-
-<hr>
+          </div> 
+          <!--table 內容 -->
+                     <div class="table-responsive" id="dataArea">
+							
+						</div>
+					</div>
 
 
-<div class="card-body"  id='dataArea' >
+				</div>
+				<!-- End of Page Wrapper -->
+			</div>
+			<!-- End of Main Content -->
 
-</div>
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Your Website 2020</span>
+					</div>
+				</div>
+			</footer>
+			<!-- End of Footer -->
+		</div>
+	</div>
+            
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -517,22 +498,169 @@ function showData(textData){
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!--     <script src="vendor/datatables/jquery.dataTables.min.js"></script> -->
+<!--     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+<!--     <script src="js/demo/datatables-demo.js"></script> -->
+    <script>
+		$(function(){
+			let dataArea = null;
+			let restname = null;
+			let query = null;
 
+		
+			restname = document.getElementById("restname");
+			query = document.getElementById("query");
+			dataArea = document.getElementById("dataArea");
+			
+			showAllData();
+			
+			function showAllData (){
+				let xhr = new XMLHttpRequest();
+				xhr.open('GET', "<c:url value='/findAll' />", true);
+				xhr.send();
+				
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						dataArea.innerHTML = showData(xhr.responseText);
+						var scriptsToLoad = [
+							"${pageContext.request.contextPath}/AdminTemplate/vendor/datatables/jquery.dataTables.min.js", 
+							"${pageContext.request.contextPath}/AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.js",
+							"${pageContext.request.contextPath}/AdminTemplate/js/demo/datatables-demo.js"
+						]; 
+						scriptsToLoad.forEach(function(src) {
+							var script = document.createElement('script');
+							script.src = src;
+							script.async = false;
+							document.body.appendChild(script);
+						});
+					}
+				};
+			}
+			
+
+				
+
+			function showData(textData) {
+				let cars = JSON.parse(textData);
+				let segment = ""
+				segment += `<div class="table-responsive">`
+				segment += `<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">`;
+				segment += 
+					`<thead>
+						<tr>
+							<th>編號</th>
+							<th>名稱</th>
+							<th>價格</th>
+							<th>座位</th>
+							<th>行李箱</th>
+							<th>手提袋</th>
+							<th>地點</th>
+							<th>日期</th>
+							<th>照片</th>
+							<th width="50px">刪除</th>
+						</tr>
+					</thead>`
+					
+				
+					
+				segment += "<tbody>"		
+				for (n = 0; n < cars.length; n++) {
+					let car = cars[n];
+					let tmpurl1 = "<c:url value='/modifyCar/' />" + car.id;
+					let tmpurl0 = "<a href='" + tmpurl1 + "'>" + car.name + "</a>";
+					//	console.log( "tmpurl0",tmpurl0);
+					
+					segment += "<tr>";
+					segment += "<td class='idX'>" + car.id + "</td>";
+					segment += "<td >" + tmpurl0 + "</td>";
+					segment += "<td >" + car.price + "</td>";
+					segment += "<td >" + car.seat + "</td>";
+					segment += "<td >" + car.suitcase + "</td>";
+					segment += "<td >" + car.handbag + "</td>";
+					segment += "<td >" + car.address + "</td>";
+					segment += "<td >" + car.date + "</td>";
+
+					//	segment += "<td ><a href="deletecar/${car.id}">Delete</a></td>";
+					segment += "<td ><img width='100' height='60' src='" +car.pictureString  +"'></td>";
+					segment += `<td id="DeleteBu"> <div class="btn btn-danger btn-circle btn-sm" > <i class="fas fa-trash"></i> </div> </td>`;
+					segment += "</tr>";
+					
+					
+				}
+				segment += "</tbody>";
+				segment += "</table>";
+				segment += "</div>";
+				return segment;
+
+			}
+			
+			// delete 
+			$('#dataArea').on('click', '#DeleteBu', function(){
+				let x =  $(this).parent().index()
+				let blogId = $(".idX")[x].textContent
+// 				console.log(blogId)
+				
+				let xhr = new XMLHttpRequest();
+                xhr.open("POST", "<c:url value='/deleteCar' />", true);
+                xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+                xhr.send("blogId="+blogId);
+				
+                xhr.onreadystatechange = function() {
+                	 if(xhr.readyState == 4 && xhr.status == 200){
+                		 console.log(xhr.responseText)
+                		 if(xhr.responseText){
+                			 console.log("OK")
+                			 alert("刪除成功")
+                			 showAllData();
+                		 }
+                		
+                	 }
+                }
+                
+			})
+			
+		})
+	</script>
+<!-- 
+<script>
+
+	$(document.body).on("click", "button[data-href]", function(){
+	console.log("click");
+	let url = this.dataset.href;
+	let id = this.dataset.value;
+	var result = confirm("確定刪除此筆紀錄(帳號:" + id + ")?");
+	if(result){
+		var xhr2 = new XMLHttpRequest();
+		xhr2.open("DELETE", url , true);
+		xhr2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		xhr2.send();
+		xhr2.onreadystatechange = function(){
+			
+		if (xhr2.readyState == 4 && (xhr2.status == 200 || xhr2.status == 204) ){
+			result = JSON.parse(xhr2.responseText);
+			if(result.fail){
+				divResult.innerHTML = "<font color = 'red' >"
+				+ result.fail + "</font>";
+			}else if (result.success){
+				window.location.href = "http://localhost:8080/FinalProjectGroup1/queryCar";
+			}
+		}	
+		}
+	}
+});
+</script>
+	 -->
 </body>
-
 </html>

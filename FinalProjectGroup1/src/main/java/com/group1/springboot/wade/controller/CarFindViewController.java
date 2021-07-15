@@ -51,6 +51,11 @@ public class CarFindViewController {
 //	}
 	
 	//insert-readEvent.jsp
+	@GetMapping("/wadeClient")
+	public String clientCar() {
+		return "Wade/ClientCar";
+	}
+	
 	@GetMapping("/wade")
 	public String sendReadCarToInsert(Model model) {
 		model.addAttribute("car",new Car());

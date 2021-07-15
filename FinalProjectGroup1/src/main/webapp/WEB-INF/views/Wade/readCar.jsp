@@ -14,16 +14,16 @@
 
 <title>On The Way Admin-Car</title>
  <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/AdminTemplatevendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/AdminTemplate/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 
@@ -40,7 +40,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="img/on the way.png" alt="無法顯示圖片" width="80%"></div>
+                <div class="sidebar-brand-text mx-3"><img src="images/on the way.png" alt="無法顯示圖片" width="80%"></div>
             </a>
 
             <!-- 分隔線 -->
@@ -440,7 +440,7 @@
 	   	  </td>
 		</div>
 		<div class="col-sm-12 mb-3 mb-sm-0">
-		   <td>備註：</td>
+		   <td>地點：</td>
 	   	  <td>
 	      	<form:input path="address" style='width:100%;height:40px;' /><br>&nbsp;	
 		      <form:errors path='address' cssClass="error"/>
@@ -472,9 +472,22 @@
 	   </tr>
 	 </div> 
 	 </div>
+	 <!-- group4  -->
+	 <div class="form-group row"> 
+	   <div class="col-sm-6 mb-3 mb-sm-0">
+	   <tr>
+	      <td>日期：</td>
+	        <td  width=''>
+	      	<form:input type="date" path="date" style='width:100%;height:40px;' /><br>&nbsp;	
+		      <form:errors path='date' cssClass="error"/>
+		  </td>
+		  </tr>
+		 </div>
+		 
+	 </div>
 	 
 	 	   
-	 <!-- group4  --> 
+	 <!-- group5  --> 
 	   <div class="form-group row"> 
 	    <!-- 
 	    <div class="col-sm-12 mb-3 mb-sm-0">	  
@@ -496,16 +509,46 @@
 	   	  </td>
 	   </tr>
 	   </div>
-	   <div class="col-sm-12 mb-3 mb-sm-0">
-	   <tr>
-	    <td colspan='4' align='center'><br>&nbsp;
-	      <input type='submit' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>
-        </td>
-	   </tr>
-	   </div>
+	   
+<!-- 	   <div class="col-sm-12 mb-3 mb-sm-0"> -->
+<!-- 	   <tr> -->
+<!-- 	    <td colspan='4' align='center'><br>&nbsp; -->
+<!-- 	     <input type='submit' id='submit' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'> -->
+<!-- 	      <button type='button' class='btn btn-primary btn-icon-split btn-lg ' onclick="sucess" style='width:120px;height:40px;'></button> -->
+	     
+<!--         </td> -->
+<!-- 	   </tr> -->
+<!-- 	   </div> -->
 	   
 	   </div>
-		 
+		  <form action="<c:url value='/value'/>" method="post">
+         <table>
+          <div class="col-sm-12 mb-3 mb-sm-0">
+          <tr>
+           <td colspan='4' align='center'><br>&nbsp;
+           <input type="submit" value="新增" class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>
+           <input type="button" onclick="inport()" value="一鍵輸入" class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'></td>
+<!--              style="border: none; background-color: #555555; color: white; border-radius: 4px;" -->
+
+          </tr>
+         </table>
+        </form>
+
+        <script>
+         $(document).ready(function() {
+          $('#WadeT1').DataTable();
+         });
+         function inport() {
+
+          document.getElementById("name").value = "Toyota Wish";
+          document.getElementById("seat").value = "7";
+          document.getElementById("price").value = "3700";
+          document.getElementById("address").value = "台北店";
+          document.getElementById("suitcase").value = "2";
+          document.getElementById("handbag").value = "2";
+
+         };
+        </script>
 	</form:form>
 
 <br>
@@ -561,23 +604,38 @@
             </div>
         </div>
     </div>
-
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/jquery/jquery.min.js"></script>
+	<!-- 
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+	//setTimeout(function(){
+		$("#submit").click(function(){
+		Swal.fire({
+			  title: 'Sucess!',
+			  text: '新增成功',
+			  icon: 'success',
+			  
+			})
+		})
+	//},100);
+	//setTimeout(function(){window.location.reload(); },2000);
+	</script>
+	 -->
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminTemplate/js/demo/datatables-demo.js"></script>
 
 </body>
 

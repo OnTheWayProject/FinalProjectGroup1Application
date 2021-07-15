@@ -21,7 +21,7 @@ import org.springframework.core.io.ClassPathResource;
 public class SystemUtils {
 	
 	public static final String CAR_IMAGE_FOLDER = "C:\\images\\car" ;
-	public static final String NO_IMAGE_PATH = "\\static\\Wade\\images\\NoImage.png";
+	public static final String NO_IMAGE_PATH = "\\static\\images\\NoImage.png";
 	
 	public static String getExtFilename(String filename) {
 		

@@ -22,9 +22,7 @@ public class CarServiceImpl {
 	@Autowired
 	CarDaoImpl CarDao;
 	
-//	public void delete(long id) {
-//		repo.deleteById(id);
-//	}
+
 
 	public void save(Car car) {
 		CarDao.save(car);
@@ -49,6 +47,14 @@ public class CarServiceImpl {
 	public List<Car> findByName(String rname) {
 		
 		return CarDao.findByName(rname);
+	}
+	
+	public void deleteCar(Car bean) {
+		CarDao.deleteCar(bean);
+	}
+
+	public List<Car> searchClient(String date, String address) {
+		return CarDao.searchClient(date, address);
 	}
 	
 }

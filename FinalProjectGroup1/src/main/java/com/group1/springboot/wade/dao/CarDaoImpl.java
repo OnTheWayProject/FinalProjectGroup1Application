@@ -5,12 +5,15 @@ import java.util.List;
 
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.group1.springboot.wade.model.Car;
+
+import antlr.debug.Event;
 
 
 
@@ -30,10 +33,7 @@ public class CarDaoImpl {
 		this.template = template;
 	}
 	
-//	public int delete(Long id) {
-//		String sql="delete from WadeT1 where id="+id+"";
-//		return template.update(sql);
-//	}
+	
 
 	public void save(Car car) {
 		em.persist(car);
@@ -92,6 +92,26 @@ public class CarDaoImpl {
 		return list;
 	}
 	
+	public void deleteCar(Car bean) {
+		em.remove(bean);
+	}
+//	public void deleteCar(Long id) {
+//		String hql="delete from WadeT1 where id =:id";
+//		Car car = em.find(Car.class, id);
+//		
+//		em.remove(car);
+//	}
+
+
+
+	public List<Car> searchClient(String date, String address) {
+		String sql = "from Car where date = :date and address = :address";
+		TypedQuery<Car> query = em.createQuery(sql, Car.class);
+		query.setParameter("date", date);
+		query.setParameter("address", address);
+		
+		return query.getResultList();
+	}
 }
 	/*------------------------------------------------
 	//找全部
