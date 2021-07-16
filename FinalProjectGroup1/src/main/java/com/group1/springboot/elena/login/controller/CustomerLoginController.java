@@ -3,8 +3,6 @@ package com.group1.springboot.elena.login.controller;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Blob;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -104,7 +101,7 @@ public class CustomerLoginController {
 		
 		
 		
-		ra.addFlashAttribute("updateSuccess", "會員資料修改成功！");
+		ra.addFlashAttribute("updateSuccess", "會員資料修改成功");
 		// 新增或修改成功，要用response.sendRedirect(newURL) 通知瀏覽器對newURL發出請求
 		return "redirect:/elena/updateuserinfo";  
 				
@@ -114,16 +111,23 @@ public class CustomerLoginController {
 	
 	
 	
-	@ModelAttribute("genderList1")
-	public Map<String, String> getAll22(){
-		Map<String, String> map = new HashMap<>();
-		map.put("男", "男");
-		map.put("女", "女");
-		
-		return map;
-		
-	}
-	
+//	
+//	@ModelAttribute("CusUpdate")
+//	public CustomerBean getPlace1(@RequestParam(value="customerID", required=false) Integer customerID) {	
+//		System.out.println("---------------------------");
+//		CustomerBean bean = null;
+//		if(customerID != null) {
+//			bean = loginService.getCustomerById(customerID);
+//		}else {
+//			bean = new CustomerBean();
+//		}
+//		System.out.println("In @ModelAttribute" + bean);
+////		model.addAttribute("place",p);	//這行可寫可不寫，他會自己生
+//
+//		return bean;
+//
+//	}
+//	
 	
 	
 	

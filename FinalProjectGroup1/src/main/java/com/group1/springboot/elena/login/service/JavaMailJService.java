@@ -31,8 +31,8 @@ public class JavaMailJService {
 	LoginDao CUJDao;
 
 	//改這邊的發信人，必須同時在信箱的安全性做設定
-	private String userName = "elena841011@gmail.com";
-	private String password = "jxqcpipnwtlyhbac";
+	private String userName = "polo8989789@gmail.com";
+	private String password = "efjwxqxadxrosfoq";
  
 	@Transactional
 	public void sendMailForget(String email) {
@@ -47,7 +47,7 @@ public class JavaMailJService {
 		String content = "親愛的使用者"+name+"您好，<br><br>我們收到您收到的密碼忘記請求。<br>"
 				+ "我們已經將您的密碼設為:"+temppwd+"，請您盡速使用此密碼登入並更新新密碼。<br>"
 				+ "如果你沒有申請請忽略此郵件。<br>"
-				+ "您可以點及此連結前往登入頁面: <a href= http://localhost:8080/FinalProjectGroup1/elena>點選這裡</a>";
+				+ "您可以點及此連結前往網站首頁: <a href= http://localhost:8080/FinalProjectGroup1>點選這裡</a>";
 	
 				
 		
@@ -118,7 +118,7 @@ public class JavaMailJService {
 	
 	@Transactional
 	public void sendMailRegistration(CustomerBean newbean) {
-		String subject = "On The Way，會員帳號認證信";
+		String subject = "娛你同行，會員帳號認證信";
 		String customer = newbean.getEmail();
 		String name = newbean.getCustomerName();
 		Integer originalId = newbean.getCustomerID();
@@ -128,7 +128,7 @@ public class JavaMailJService {
 		String content = "<h3>確認您的電子郵件地址</h3><br><br><br>"
 				+"親愛的使用者"+name+"您好，<br><br>很高興你加入我們On The Way的一員。<br>"
 				+ "為了驗證您的身分，請您點擊下方連結完成註冊驗證。<br>"
-				+ "註冊連結: <a href= http://localhost:8080/FinalProjectGroup1/elena/mail/mailconfirmation/"+code+">點選這裡完成註冊</a>。<br>"
+				+ "註冊連結: <a href= http://localhost:8080/proj/Jesper/mail/mailconfirmation/"+code+">點選這裡完成註冊</a>。<br>"
 				+ "如果你沒有申請請忽略此郵件。<br>";
 		
 		

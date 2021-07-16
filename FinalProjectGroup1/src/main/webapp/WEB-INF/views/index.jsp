@@ -43,7 +43,7 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h1 id="logo"><a href="<c:url value="/"/>">On<span> The Way</span></a></h1>
+					<h1 id="logo"><a href="index.html">On<span> The Way</span></a></h1>
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="<c:url value="/"/>">首頁</a></li>
@@ -78,11 +78,7 @@
 							</li>
 
 							<li class="submenu">
-<<<<<<< HEAD
-								<a href="<c:url value='/wadeClient'/>">租車</a>
-=======
 								<a href="#">租車</a>
->>>>>>> e10cde8d8da6357096ea8c243bd8b98c4a96bbdb
 								<ul>
 									<li><a href="left-sidebar.html">Left Sidebar</a></li>
 									<li><a href="right-sidebar.html">Right Sidebar</a></li>
@@ -120,10 +116,10 @@
 							</li>
 
 							<li id="myAccount" style="visibility:hidden" class="submenu">
-								<a>我的帳號</a>
+								<a href="<c:url value="/elena/gotoCustomerHomePage"/>">我的帳號</a>
 								<ul>
-									<li><a href="<c:url value="/elena/gotoCustomerHomePage"/>">會員中心</a></li>
-									<li><a href="right-sidebar.html">訂單查詢</a></li>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
 									<li><a href="no-sidebar.html">No Sidebar</a></li>
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
@@ -153,14 +149,14 @@
 						<header>
 							<h2>On The Way</h2>
 						</header>
-						<p>歡迎來到<strong>On The Way</strong>
+						<p>This is <strong>Twenty</strong>, a free
 						<br />
-						在這裡
+						responsive template
 						<br />
-						與你心愛的人一起創造你們的專屬回憶吧！</p>
+						by <a href="http://html5up.net">HTML5 UP</a>.</p>
 						<footer>
 							<ul class="buttons stacked">
-								<li><a href="#main" class="button fit scrolly">了解 On The Way</a></li>
+								<li><a href="#main" class="button fit scrolly">Tell Me More</a></li>
 							</ul>
 						</footer>
 
@@ -173,17 +169,15 @@
 
 					<header class="special container">
 						<span class="icon solid fa-chart-bar"></span>
-						<h2>「旅行是唯一讓你付出，卻能變得更富有的事情。」<br>
-						<strong>Travel</strong> is the Only Thing You Buy that Makes You <strong>Richer.</strong>
+						<h2>As this is my <strong>twentieth</strong> freebie for HTML5 UP
 						<br />
-						</h2>
-						<br>
-						<br>
-						<p>放下旅行指南，一切隨緣。不需要思考下一個目的地，隨心所欲。有時候，不小心亂入一間街角的餐廳，都有可能是出乎意料的相遇。往往不在計畫裡的計劃，總會在記憶深處令人回味。
+						I decided to give it a really creative name.</h2>
+						<p>Turns out <strong>Twenty</strong> was the best I could come up with. Anyway, lame name aside,
 						<br />
-						
+						it's minimally designed, fully responsive, built on HTML5/CSS3,
+						and, like all my stuff,
 						<br />
-						</p>
+						released for free under the <a href="http://html5up.net/license">Creative Commons Attribution 3.0</a> license. Have fun!</p>
 					</header>
 
 					<!-- One -->
@@ -192,14 +186,12 @@
 								<div class="col-8 col-12-narrower">
 
 									<header>
-										<h2>「旅行是段與自己獨處的時光，既浪漫又艱辛，但旅行能讓人找到自己。｣</h2>
+										<h2>Behold the <strong>icons</strong> that visualize what you’re all about. or just take up space. your call bro.</h2>
 									</header>
-									<p>旅行令人著迷，一路上所遇所見都能為內心帶來啟發與改變，那是種源自於心靈，能真切的感受到自我成長與蛻變的過程，讓我們更加成熟更加謙虛更加知足，最終我們將趨近於我們靈魂更深層的自己。</p>
-									<br>
-									<p>在On The Way, 你可以找到專屬於你的浪漫旅行</p>
+									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo. Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo.</p>
 									<footer>
 										<ul class="buttons">
-											<li><a href="#" class="button">我們提供的行程</a></li>
+											<li><a href="#" class="button">Find Out More</a></li>
 										</ul>
 									</footer>
 
@@ -377,8 +369,8 @@ var customerName = "${CurrentUser.customerName}";
 window.onload = function(){
 
 if("${loginSuccess}" == "登入成功!"){
-	alert("${name}" + "," + "歡迎回來!");
-// 	Swal.fire("${name}" + "," + "歡迎回來!");
+// 	alert("${name}" + "," + "歡迎回來!");
+	Swal.fire("${name}" + "," + "歡迎回來!");
 }
 
 
@@ -408,7 +400,7 @@ var LoginName = document.getElementById("LoginName");
 		}
 }
 </script>
-<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
