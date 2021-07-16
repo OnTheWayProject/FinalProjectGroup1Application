@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,7 +53,7 @@ public class EventController {
 	@Autowired
 	EventValidator eventValidator;
 	
-	@GetMapping(value="/findAll",produces = "application/json; charset=UTF-8")
+	@GetMapping(value={"/findAll","/delAndQueryEvents"},produces = "application/json; charset=UTF-8")
 	public @ResponseBody List<Event> findAll(){
 		return eventService.findAll();		
 	}
@@ -197,6 +198,44 @@ public class EventController {
 		return "readEvent" ;
 	}
 	
+	//刪除
+	
+	@DeleteMapping("/deleteEvent/{id}")
+	public String deleteEvent(@PathVariable("id")Long id) {
+		eventService.deleteEvent(id);
+		return "redirect:/queryEvent";
+		
+	}
+
+	// 跳轉SpEventpage
+		@GetMapping("/readSpEvent/{id}")
+		public String sendreadSpEventPage( 
+				@PathVariable Long id,Model model
+				) {
+			Event event = eventService.findById(id);
+			model.addAttribute("event",event);
+			return "Sylvia/readSpEvent";
+			
+		}
+	
+		//刪除
+		@PostMapping("/deleteEvent1")
+		public @ResponseBody Boolean deleteEvent1(@RequestParam(required = false) Long id ) {
+			Boolean result = true;
+			
+			try {
+				Event bean = eventService.findById(id);
+				System.out.println(bean);
+				eventService.deleteEvent1(bean);
+			} catch (Exception e) {
+				e.printStackTrace();
+				result = false;
+			}
+			
+			return result;
+		}
+		
+		
 	
 	
 }

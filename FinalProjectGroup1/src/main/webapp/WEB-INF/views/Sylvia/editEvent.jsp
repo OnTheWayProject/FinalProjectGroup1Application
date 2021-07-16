@@ -3,6 +3,7 @@
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -19,16 +20,39 @@
 <title>On The Way Admin-Event</title>
 <c:url value="/"></c:url>
  <!-- Custom fonts for this template -->
-    <link  href="<%=basePath%>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link  href="<%=basePath%>/AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="<%=basePath%>https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<%=basePath%>css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<%=basePath%>/AdminTemplate/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="<%=basePath%>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="<%=basePath%>/AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script src="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.js"></script>
+    <script>
+
+window.addEventListener("load", function(){
+	
+    //預覽圖片
+    imginp.onchange = evt => {
+   	  const [file] = imginp.files
+   	  if (file) {
+   		presentimg.src = URL.createObjectURL(file)
+   	  }
+   	}
+
+	
+})
+
+</script>
+    
 </head>
 
 
@@ -41,11 +65,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=basePath%><c:url value='/' />">
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="<%=basePath%>img/on the way.png" alt="無法顯示圖片" width="80%"></div>
+                <div class="sidebar-brand-text mx-3"><img src="<%=basePath%>/AdminTemplate/img/on the way.png" alt="無法顯示圖片" width="80%"></div>
             </a>
 
             <!-- 分隔線 -->
@@ -262,7 +286,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -274,7 +298,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_2.svg"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -286,7 +310,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_3.svg"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -320,7 +344,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="<%=basePath%>img/undraw_profile.svg">
+                                    src="<%=basePath%>/AdminTemplate/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -375,7 +399,7 @@
 
 <%-- 	    <form:form method="POST" modelAttribute="place" >  --%>
 
-	<form:form method="POST" modelAttribute="event" enctype='multipart/form-data'>
+	<form:form id="myform" method="POST" modelAttribute="event" enctype='multipart/form-data'>
 	
 	<!-- <c:choose>
 		<c:when test='${event.id == null}'>
@@ -439,7 +463,7 @@
 		      <form:errors path='address' cssClass="error"/>
 		  </td>
 		</div>  
-	     </tr>
+	     
 	   
 	 </div>
 	   
@@ -480,9 +504,9 @@
 	   	  </div>
 	   	  <div class="col-sm-12 mb-3 mb-sm-0">
 	   	  <tr>
-	   	  <td>照片：<br>&nbsp;</td>
+	   	  <td>照片：<br>&nbsp;<img id="presentimg" width='600' height='460' src= " ${event.pictureString} "></td>
 	   	  <td>
-	   	  	<form:input path="eventImage" type='file'  /><br>&nbsp;
+	   	  	<form:input id="imginp" path="eventImage" type='file'  /><br>&nbsp;
 	   	  	 <form:errors path="eventImage"  cssClass="error" />
 	   	  </td>
 	   </tr>
@@ -490,7 +514,7 @@
 	   <div class="col-sm-12 mb-3 mb-sm-0">
 	   <tr>
 	    <td colspan='4' align='center'><br>&nbsp;
-	      <input type='submit' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>
+	      <button type='button' id='subbtn' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>修改</button>
         </td>
 	   </tr>
 	   </div>
@@ -554,21 +578,40 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<%=basePath%>vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $('#subbtn').click(function(){
+    var form = document.getElementById('myform');
+   
+    
+     swal({
+         title: "修改成功!",
+         text: " ",
+         type: "success"
+     }).then(function(){
+     form.submit()
+     })
+    
+    
+    });
+    
+    
+    
+    </script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/jquery/jquery.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<%=basePath%>vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<%=basePath%>js/sb-admin-2.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="<%=basePath%>vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<%=basePath%>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="<%=basePath%>js/demo/datatables-demo.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/js/demo/datatables-demo.js"></script>
 
 </body>
 

@@ -43,6 +43,15 @@ public class EventServiceImpl {
 		
 		return eventDao.findByName(rname);
 	}
+
+	public void deleteEvent(Long id) {
+		eventDao.deleteEvent(id);
+	}
+
+	public void deleteEvent1(Event bean) {
+		eventDao.deleteEvent1(bean);
+		
+	}
 	
 }
 	/*

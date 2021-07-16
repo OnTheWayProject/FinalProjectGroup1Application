@@ -3,6 +3,12 @@
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,16 +20,29 @@
 
 <title>On The Way Admin-Event</title>
  <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="<%=basePath%>/AdminTemplate/vendor/jquery/jquery.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="AdminTemplate/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    
+     <!-- sweetAlert -->
+    <link rel="stylesheet" href="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script src="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.js"></script>
+    
+    
 </head>
 
 
@@ -36,11 +55,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/' />">
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="img/on the way.png" alt="無法顯示圖片" width="80%"></div>
+                <div class="sidebar-brand-text mx-3"><img src="AdminTemplate/img/on the way.png" alt="無法顯示圖片" width="80%"></div>
             </a>
 
             <!-- 分隔線 -->
@@ -109,7 +128,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                       <!--  <h6 class="collapse-header">Login Screens:</h6> -->
                         <a class="collapse-item" href="#">特色體驗</a>
-                        <a class="collapse-item" href="SpEvent.html">城市尋寶</a>
+                        <a class="collapse-item" href="<c:url value='/queryGame' />">城市尋寶</a>
                        
                     </div>
                 </div>
@@ -257,7 +276,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -269,7 +288,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_2.svg"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -281,7 +300,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_3.svg"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -315,7 +334,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="AdminTemplate/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -370,7 +389,7 @@
 
 <%-- 	    <form:form method="POST" modelAttribute="place" >  --%>
 
-	<form:form method="POST" modelAttribute="event" enctype='multipart/form-data'>
+	<form:form id='myform' method="POST" modelAttribute="event" enctype='multipart/form-data'>
 	
 	<!-- <c:choose>
 		<c:when test='${event.id == null}'>
@@ -468,7 +487,7 @@
 	   	  <tr>
 	      <td>內容：</td>
 	   	  <td>
-	   	      <form:input path="content" style='width:100%;height:40px;'  /><br>&nbsp;
+	   	      <form:input path="content"  id="scontent" style='width:100%;height:40px;'  /><br>&nbsp;
 	   	  	  <form:errors path='content'  cssClass="error" />
 	   	  </td>
 	   	  </tr>
@@ -483,11 +502,108 @@
 	   </tr>
 	   </div>
 	   <div class="col-sm-12 mb-3 mb-sm-0">
+	   
+	   <!-- 一鍵輸入 -->
+	   
+	  
+         <table>
+	   
 	   <tr>
 	    <td colspan='4' align='center'><br>&nbsp;
-	      <input type='submit' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>
+	  <!--     
+	  <input type='submit' id='ok1' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>
+	   -->
+	      <button  type='button'  id='subbtn'  class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;' > 提交</button>
+	      <input type='reset' class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'>
+	     <input class='btn btn-primary btn-icon-split btn-lg ' style='width:120px;height:40px;'
+            type='button' onclick="inport()" value='一鍵輸入'>
+	 
         </td>
 	   </tr>
+	     </table>
+      
+	   
+	   <script>
+         $(document).ready(function() {
+          $('#EventV1').DataTable();
+         });
+         
+         function inport() {
+
+          document.getElementById("Id").value = "24847";
+          document.getElementById("name").value = "夢幻造型永生花手作課程體驗";
+          document.getElementById("price").value = "690";
+          
+          
+          document.getElementById("longitude").value = "25.897199";
+          document.getElementById("latitude").value = "121.56667";
+          document.getElementById("address").value = "台中市南區復興路三段362號";
+          document.getElementById("scontent").value = "永生花，又稱不凋花、恆星花，是由新鮮花朵製成，每一朵都擁有不同的樣貌。不用照顧，可放置3~5年，甚至更久。這項技術源自於法國，由日本將其發揚光大。課程中會介紹如何從花朵挑選、顏色搭配、開花、組合等花藝技巧，讓你一步步的完成精美的作品，每件作品還贈送一顆來自奧地利的「施華洛世奇水晶」做搭配，不論是自己收藏或是送禮，都是很好的選擇喔！";
+        //  document.getElementById("tip3").value = "炫光奪目";
+          
+          
+          
+         };
+         
+         
+         //sweetalert ok1
+        // $(".demo_2 ").click(function() {
+         //           swal("Good!", "弹出了一个操作成功的提示框", "success");
+         //       });
+//           subbtn = document.getElementById("subbtn");
+        
+        
+         $('#subbtn').click(function(){
+        		 var form = document.getElementById('myform');
+        		 var x = document.forms["myform"]["Id"].value;
+		           var y = document.forms["myform"]["price"].value;
+		           var z = document.forms["myform"]["name"].value;
+		           if (x!=""&&y!=""&&z!="") {
+        			 swal({
+        				    title: "新增成功!",
+        				    text: " ",
+        				    type: "success"
+        				}).then(function(){
+        				form.submit()
+        				})
+        		 }else  {
+		        	   swal({
+			                title: "新增失敗!",
+			                text: " ",
+			                type: "error"})
+		           }
+        				
+        		 
+        		 })
+            
+        
+        
+        
+
+//         $("#subbtn").on('click', function(e){
+//                  e.preventDefault();
+              
+                 
+//                  $("#myform").submit()then(function(){Swal.fire(
+//                          "新增成功", //標題 
+//                          " ", //訊息內容(可省略)
+//                           "success" //圖示(可省略) success/info/warning/error/question
+//                           //圖示範例：https://sweetalert2.github.io/#icons
+                         
+//                       )});
+                      
+                     	 
+                  
+//                     });
+         
+       //  document.getElementById("ok1").addEventListener("click",function(){
+       // 	 setTimeout(function(){swal("新增成功","${event.id} 新增成功!","success"); },100);
+       // 	 setTimeout(function(){window.location.reload(); },2000);
+         
+       //    });
+        </script>
+	   
+	   
 	   </div>
 	   
 	   </div>
@@ -548,22 +664,21 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="<%=basePath%>/AdminTemplate/js/demo/datatables-demo.js"></script>
+    
+   
 
 </body>
 

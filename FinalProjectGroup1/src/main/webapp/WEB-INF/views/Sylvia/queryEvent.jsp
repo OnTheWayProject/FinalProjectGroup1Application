@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+    
+ 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +14,19 @@
 <meta charset="UTF-8">
 <title>On The Way Admin-Event</title>
  <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="AdminTemplate/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="AdminTemplate/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link href="AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <script>
 
+  
 let dataArea = null; 
 let restname = null; 
 let query = null; 
@@ -33,10 +36,11 @@ window.addEventListener('load',function(){
 	query = document.getElementById("query");	
 	dataArea = document.getElementById("dataArea");
 	let xhr = new XMLHttpRequest();
+	
 	xhr.open('GET', "<c:url value='/findAll' />", true);
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState == 4 && xhr.status == 200 ){
-		   console.log(xhr.responseText);
+		 //  console.log(xhr.responseText);
 			dataArea.innerHTML = showData(xhr.responseText);
 		}
 	};
@@ -67,6 +71,37 @@ window.addEventListener('load',function(){
 		
 })
 
+//-------------------------
+	  
+
+	/*
+	var deleteData = document.getElementById("deleteData");
+   deleteData.addEventListener('click', (e)=> {
+	   var result = confirm("確定刪除此筆記錄(帳號:" + id.value + ")?");
+	   if (result) {
+		    var xhr2 = new XMLHttpRequest();
+	   		xhr2.open("DELETE", "<c:url value='/deleteEvent/' />" + id , true);
+	   		xhr2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	   		xhr2.send();
+	   		xhr2.onreadystatechange = function() {
+						// 伺服器請求完成
+	   		if (xhr2.readyState == 4 && (xhr2.status == 200 || xhr2.status == 204) ) {
+	      		result = JSON.parse(xhr2.responseText);
+	      		if (result.fail) {
+			 		divResult.innerHTML = "<font color='red' >"
+						+ result.fail + "</font>";
+		  		} else if (result.success) {
+		  			window.location.href = "http://localhost:8080/FinalProjectGroup1/querEvent";
+	      		}                                                             
+			} 
+		      
+		  }
+	   } 
+   })*/
+		
+	
+//-------------------------
+
 function showData(textData){
 	let events =  JSON.parse(textData);
 	let segment = "<table class=' table-bordered' id='dataTable' width='100%' style='table-layout:fixed;' >";
@@ -76,34 +111,50 @@ function showData(textData){
 	} else {		
 	segment += "<tr><th colspan='8'>共計" + size + "筆資料</th><tr>";
 	*/
-	segment += "<thead ><tr><th width='13%'>&nbsp; 編號 </th><th width='40%'>&nbsp; 名稱 </th><th width='7%'>&nbsp; 價格 </th><th width='24%'>&nbsp; 地址 </th><th width='11%'>&nbsp; 照片 </th></tr></thead>";
+	
+	segment += "<thead ><tr><th width='13%'>&nbsp; 編號 </th><th width='40%'>&nbsp; 名稱 </th><th width='7%'>&nbsp; 價格 </th><th width='24%'>&nbsp; 地址 </th><th width='11%'>&nbsp; 照片 </th><th width='5%'>&nbsp;刪除</th></tr></thead>";
 	for(n = 0 ; n < events.length ; n++ ){
 		let event = events[n];
 		let tmpurl1 ="<c:url value='/modifyEvent/' />" + event.id;
     	let tmpurl0 = "<a href='" + tmpurl1 + "'>" + event.name  + "</a>";
+    	let tmpurl2 = "<c:url value='/deleteEvent/'/>" + event.id;
     //	console.log( "tmpurl0",tmpurl0);
         segment += "<tbody >";
 		segment += "<tr >";
-		segment += "<td >&nbsp;" + event.id +"&nbsp;</td>";
+		
+		segment += "<td  >&nbsp;" + event.id +"&nbsp;</td>";
 		segment += "<td >&nbsp;" + tmpurl0 +"&nbsp;</td>";
 		segment += "<td >&nbsp;" + ' $ ' + event.price  +"&nbsp;</td>";
 		segment += "<td >&nbsp;"+ event.address  +"&nbsp;</td>";
 		segment += "<td ><img width='100' height='60' src='" +event.pictureString  +"'></td>";
 		
+		segment += "<td  >&nbsp;<button class='btn btn-primary btn-sm ' id='deleteData' style='width:35px;height:35px;' type='button' onClick='window.location.reload();' data-href='" + tmpurl2 +"' data-value='" + event.id+"'><i class='far fa-trash-alt'></i></button> &nbsp; </td>";
+	//	segment += "<td >&nbsp;<button  type='button' id='deleteData ' data-href='" + tmpurl2 +"' data-value='" + event.id+"'>刪除</button>&nbsp; </td>";
+		
+		
 		segment += "</tr>";
+	}
 		segment += "</tbody>";
 //	 }
-	}
 	segment += "</table>";
+	segment += "</div>";
 	return segment;
 
 }
 
 </script>
+<style type="text/css">
+.i{
+   
+   display: flex;
+align-items: center;
+ margin: auto;
+}
 
+</style>
 
 </head>
-<body>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -113,11 +164,11 @@ function showData(textData){
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/' />">
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="img/on the way.png" alt="無法顯示圖片" width="80%"></div>
+                <div class="sidebar-brand-text mx-3"><img src="AdminTemplate/img/on the way.png" alt="無法顯示圖片" width="80%"></div>
             </a>
 
             <!-- 分隔線 -->
@@ -177,7 +228,7 @@ function showData(textData){
 
             <!-- Nav Item - Event -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="Event.html" data-toggle="collapse" data-target="#collapse3"
+                <a class="nav-link collapsed" href="<c:url value='/sylvia' />" data-toggle="collapse" data-target="#collapse3"
                     aria-expanded="true" aria-controls="collapse3" >
                     <i class="far fa-calendar-check " aria-hidden="true" ></i>
                     <span>活動商品管理</span>
@@ -186,7 +237,7 @@ function showData(textData){
                     <div class="bg-white py-2 collapse-inner rounded">
                       <!--  <h6 class="collapse-header">Login Screens:</h6> -->
                         <a class="collapse-item" href="#">特色體驗</a>
-                        <a class="collapse-item" href="SpEvent.html">城市尋寶</a>
+                        <a class="collapse-item" href="<c:url value='/queryGame' />">城市尋寶</a>
                        
                     </div>
                 </div>
@@ -334,7 +385,7 @@ function showData(textData){
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -346,7 +397,7 @@ function showData(textData){
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_2.svg"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -358,7 +409,7 @@ function showData(textData){
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="AdminTemplate/img/undraw_profile_3.svg"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -392,7 +443,7 @@ function showData(textData){
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="AdminTemplate/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -513,22 +564,62 @@ function showData(textData){
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="AdminTemplate/vendor/jquery/jquery.min.js"></script>
+    <script src="AdminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="AdminTemplate/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="AdminTemplate/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="AdminTemplate/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="AdminTemplate/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="AdminTemplate/js/demo/datatables-demo.js"></script>
+    
+    <script>
 
+		$(document.body).on("click", "button[data-href]", function () {
+			console.log("click");
+		   let url = this.dataset.href;
+		   let id = this.dataset.value;
+		   var result = confirm("確定刪除此筆記錄(帳號:" + id + ")?");
+		   if (result) {
+			    var xhr2 = new XMLHttpRequest();
+		   		xhr2.open("DELETE", url , true);
+		   		xhr2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		   		xhr2.send();
+		   		xhr2.onreadystatechange = function() {
+							// 伺服器請求完成
+		   		if (xhr2.readyState == 4 && (xhr2.status == 200 || xhr2.status == 204) ) {
+		      		result = JSON.parse(xhr2.responseText);
+		      		if (result.fail) {
+				 		divResult.innerHTML = "<font color='red' >"
+							+ result.fail + "</font>";
+			  		} else if (result.success) {
+			  			window.location.href = "http://localhost:8080/FinalProjectGroup1/queryEvent";
+		      		}                                                             
+				} 
+			      
+			  }
+		   } 
+			
+		});
+	    	
+	//	function deleteData(){
+	//		if(deleteConfirm()){
+	//			alert("刪除");
+	//		}
+	//		else{
+	//			alert("取消");
+	//		}
+	//	}
+		
+    </script>
+   
 </body>
 
 </html>

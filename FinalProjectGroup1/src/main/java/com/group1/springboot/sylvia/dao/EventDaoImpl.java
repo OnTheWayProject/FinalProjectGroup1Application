@@ -49,6 +49,16 @@ public class EventDaoImpl {
 	return list;
 	}
 	
+	//刪除
+	
+	public void deleteEvent(Long id) { 
+		String hql ="delete from Event where id =:id";
+		Event event = em.find(Event.class, id);
+
+		em.remove(event);
+		
+	}
+	
 	//用name找
 	/*
 	@SuppressWarnings("unchecked")
@@ -76,6 +86,11 @@ public class EventDaoImpl {
 				             .getResultList();
 		System.out.println(list.size() + "," + list);
 		return list;
+	}
+
+	public void deleteEvent1(Event bean) {
+		em.remove(bean);
+		
 	}
 	
 }
