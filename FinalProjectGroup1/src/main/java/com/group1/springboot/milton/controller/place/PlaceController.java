@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Blob;
 import java.sql.Clob;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.group1.springboot.milton.model.Cart;
 import com.group1.springboot.milton.model.Place;
 import com.group1.springboot.milton.model.ProductInfo;
 import com.group1.springboot.milton.service.PlaceServiceImpl;
@@ -52,7 +54,7 @@ public class PlaceController {
 	
 	@GetMapping(value="/findById/{id}", produces = "application/json; charset=UTF-8")	
 	public @ResponseBody ProductInfo findById(
-			@PathVariable Long id
+			@PathVariable Integer id
 			
 			){
 		return placeService.findById(id); 
@@ -74,41 +76,53 @@ public class PlaceController {
 		return "restaurant/queryRestaurant";
 	}
 	
-	@GetMapping("/readfile/excel/adc")
-	public String readFile(Model model) {
-		String result = "";
-		try {
-			ClassPathResource  cpr = new ClassPathResource(filename);
-			InputStream is = cpr.getInputStream();
-			InputStreamReader  isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
-			String line = "";
-			int count = 0;
-			while ((line = br.readLine())!= null) {
-				System.out.println(line);
-				String[] sa = line.split(",");
-				
-				Integer typeId = Integer.parseInt(sa[0]);
-				Double longitude = Double.parseDouble(sa[4].trim());
-				Double latitude = Double.parseDouble(sa[5].trim());
-				Blob blob = SystemUtils.pathToBlob(sa[7]);
-				Clob clob = SystemUtils.pathToClob(sa[8]);
-				String mimeType = context.getMimeType(sa[7]);   /// /static/images/place02.jpg
-				
-				Place place = new Place(typeId, sa[1], sa[2], sa[3], 
-                 						longitude, latitude, sa[6], blob, clob, mimeType);
 	
-				placeService.save(place);
-				count++;
-			}
-			result = "新增" + count + "筆Place記錄";
-		} catch (Exception e) {
-			e.printStackTrace();
-			result = e.getMessage();
-		}
-		model.addAttribute("result", result);
-		
-		return "ex02/showResult";
-	}	
+	
+	
+//	@GetMapping("/insertRestaurant")
+//	public String delCartItem(@RequestParam(value = "cartIndex", required = false) Integer cartindex,
+//			Model m) {
+//		
+//		List<Cart> cartItem = (List<Cart>) m.getAttribute("cart");
+//		cartItem.remove(cartindex);
+//		return  "Milton/insertRestaurant";
+//	}
+	
+//	@GetMapping("/readfile/excel/adc")
+//	public String readFile(Model model) {
+//		String result = "";
+//		try {
+//			ClassPathResource  cpr = new ClassPathResource(filename);
+//			InputStream is = cpr.getInputStream();
+//			InputStreamReader  isr = new InputStreamReader(is);
+//			BufferedReader br = new BufferedReader(isr);
+//			String line = "";
+//			int count = 0;
+//			while ((line = br.readLine())!= null) {
+//				System.out.println(line);
+//				String[] sa = line.split(",");
+//				
+//				Integer typeId = Integer.parseInt(sa[0]);
+//				Double longitude = Double.parseDouble(sa[4].trim());
+//				Double latitude = Double.parseDouble(sa[5].trim());
+//				Blob blob = SystemUtils.pathToBlob(sa[7]);
+//				Clob clob = SystemUtils.pathToClob(sa[8]);
+//				String mimeType = context.getMimeType(sa[7]);   /// /static/images/place02.jpg
+//				
+//				Cart place = new Place(typeId, sa[1], sa[2], sa[3], 
+//                 						longitude, latitude, sa[6], blob, clob, mimeType);
+//	
+//				placeService.save(place);
+//				count++;
+//			}
+//			result = "新增" + count + "筆Place記錄";
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			result = e.getMessage();
+//		}
+//		model.addAttribute("result", result);
+//		
+//		return "ex02/showResult";
+//	}	
 	
 }

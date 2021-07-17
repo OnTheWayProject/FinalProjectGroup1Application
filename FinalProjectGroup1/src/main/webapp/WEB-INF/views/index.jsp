@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-    
-    <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE html>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
 	<head>
 		<title>On The Way</title>
@@ -18,8 +15,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/TwentyTemplate/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="${pageContext.request.contextPath}/TwentyTemplate/assets/css/noscript.css" /></noscript>
 	</head>
-	
-<body class="index is-preload">
+	<body class="index is-preload">
 	
 	
 <c:choose>
@@ -43,15 +39,14 @@
 	
 	
 	
-		<div id="page-wrapper" >
+		<div id="page-wrapper">
 
 			<!-- Header -->
 				<header id="header" class="alt">
 					<h1 id="logo"><a href="<c:url value="/"/>">On<span> The Way</span></a></h1>
-					
 					<nav id="nav">
 						<ul>
-						<!-- 	<li class="current"><a href="<c:url value="/"/>">首頁</a></li> -->
+							<li class="current"><a href="<c:url value="/"/>">首頁</a></li>
 <!-- 							<li class="submenu"> -->
 <!-- 								<a href="#">分頁</a> -->
 <!-- 								<ul> -->
@@ -71,7 +66,6 @@
 <!-- 									</li> -->
 <!-- 								</ul> -->
 <!-- 							</li> -->
-
 
 							<li class="submenu">
 								<a href="#">住宿</a>
@@ -96,13 +90,14 @@
 							<li class="submenu">
 								<a href="#">活動</a>
 								<ul>
-									<li><a href="<c:url value="/clientevent"/>">特色行程</a></li>
-									<li><a href="<c:url value="/clientSpevent"/>">城市觀光</a></li>
-									
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</li>
 							<li class="submenu">
-								<a href="#" >部落格</a>
+								<a href="#">部落格</a>
 								<ul>
 									<li><a href="left-sidebar.html">Left Sidebar</a></li>
 									<li><a href="right-sidebar.html">Right Sidebar</a></li>
@@ -111,40 +106,32 @@
 								</ul>
 							</li>
 							<li class="submenu">
-								<a href="#">購物車</a>
-								<ul>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
+								<a href="<c:url value="/insertRestaurant"/>">購物車</a>
+<!-- 								<ul> -->
+<!-- 									<li><a href="left-sidebar.html">Left Sidebar</a></li> -->
+<!-- 									<li><a href="right-sidebar.html">Right Sidebar</a></li> -->
+<!-- 									<li><a href="no-sidebar.html">No Sidebar</a></li> -->
+<!-- 									<li><a href="contact.html">Contact</a></li> -->
+<!-- 								</ul> -->
 							</li>
 
 							<li id="myAccount" style="visibility:hidden" class="submenu">
-								<a href="<c:url value="/elena/gotoCustomerHomePage"/>">我的帳號</a>
+								<a>我的帳號</a>
 								<ul>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="<c:url value="/elena/gotoCustomerHomePage"/>">會員中心</a></li>
+									<li><a href="right-sidebar.html">訂單查詢</a></li>
 									<li><a href="no-sidebar.html">No Sidebar</a></li>
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</li>
-
-  				<li class="nav-item">		
-					<a class="nav-link" href="<c:url value='/ManagerIndex' />">
-					<i class="far fa-grin"aria-hidden="true"></i>	     
-					<span></span></a>
-                </li>
-            
-                        
+						
+							
 							<li id="loginHref" style="visibility:visible"><a href="<c:url value="/elena"/>" class="button primary">登入</a></li>
 							<li id="register" style="visibility:visible"><a href="<c:url value="/elena/registration"/>" class="button primary">註冊</a></li>
 							<li id="LoginName" style="visibility:hidden">親愛的${currentname}，歡迎回來！</li>
 							<li id="logoutHref" style="visibility:hidden"><a href="<c:url value="/elena/logout"/>" class="button primary">登出</a></li>
-                         </ul>
-							    <!-- 連接使用者端 -->  <!-- client index.jsp --> 
-            
-						
+							
+						</ul>
 					</nav>
 				</header>
 
@@ -162,14 +149,14 @@
 						<header>
 							<h2>On The Way</h2>
 						</header>
-						<p>This is <strong>Twenty</strong>, a free
+						<p>歡迎來到<strong>On The Way</strong>
 						<br />
-						responsive template
+						在這裡
 						<br />
-						by <a href="http://html5up.net">HTML5 UP</a>.</p>
+						與你心愛的人一起創造你們的專屬回憶吧！</p>
 						<footer>
 							<ul class="buttons stacked">
-								<li><a href="#main" class="button fit scrolly">Tell Me More</a></li>
+								<li><a href="#main" class="button fit scrolly">了解 On The Way</a></li>
 							</ul>
 						</footer>
 
@@ -382,8 +369,8 @@ var customerName = "${CurrentUser.customerName}";
 window.onload = function(){
 
 if("${loginSuccess}" == "登入成功!"){
-// 	alert("${name}" + "," + "歡迎回來!");
-	Swal.fire("${name}" + "," + "歡迎回來!");
+	alert("${name}" + "," + "歡迎回來!");
+// 	Swal.fire("${name}" + "," + "歡迎回來!");
 }
 
 
@@ -413,7 +400,7 @@ var LoginName = document.getElementById("LoginName");
 		}
 }
 </script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
 
 

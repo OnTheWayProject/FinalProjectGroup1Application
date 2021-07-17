@@ -45,7 +45,7 @@ border-width:3px;
 ${errors.msg}
 <BR>
 <br>
-還沒有帳號嗎?<a href="<c:url value='/elena/registerForm.do'/>">請點我註冊</a><br>
+還沒有帳號嗎?<a href="<c:url value='/elena/registration'/>">請點我註冊</a><br>
 <br>
 </div>
 <!--  <input name="register" type="submit" value="註冊"/><br> -->

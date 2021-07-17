@@ -1,5 +1,7 @@
 package com.group1.springboot.milton.model;
 
+import java.text.NumberFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -71,7 +73,10 @@ public class ProductInfo {
 		this.typename = typename;
 	}
 	
-	
+	public String getPriceCurrencyFormat() {
+		 NumberFormat currency = NumberFormat.getCurrencyInstance();
+		 return currency.format(productprice);
+		 }
 	
 	
 	
