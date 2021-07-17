@@ -20,64 +20,71 @@
 <%-- <jsp:useBean id="customerBean" class="login.model.CustomerBean" scope="session" /> --%>
 <center>
 <h2>
-Hello! ${name}
+Hello! ${CurrentUser.customerName}
 會員資料頁面
 </h2>
 </center>
 <!-- <form action="/selectCustomerInfo.controller" method="post"> -->
 <center>
-<table  cellspacing="2" cellpadding="1" border="1" width="80%">
-<tr bgcolor="#FFFFE1">
-    <td>Customer ID:</td>
-    <td>${id}
+<form enctype='multipart/form-data'>
+<table  cellspacing="2" cellpadding="1" border="1" width="40%">
+<!-- <tr bgcolor="#FFFFE1"> -->
+<!--     <td>Customer ID:</td> -->
+<%--     <td>${CurrentUser.customerID} --%>
 <!--     = request.getParameter("bean").getCustomerID -->
-    </td>
-</tr>
+<!--     </td> -->
+<!-- </tr> -->
 <tr bgcolor="#FFFFE1">
     <td>姓名:</td>
-    <td>${name}
+    <td>${CurrentUser.customerName}
     </td>
 </tr>
 <tr bgcolor="#FFFFE1">
     <td>帳號:</td>
-    <td>${account}
+    <td>${CurrentUser.account}
     </td>
 </tr>
 <tr bgcolor="#FFFFE1">
     <td>密碼:</td>
-    <td>${password}
+    <td>${CurrentUser.password}
     </td>
 </tr>
-<tr bgcolor="#F2F4FB">
+<tr bgcolor="#FFFFE1">
     <td width="150">E-mail:</td>
-    <td>${email}
+    <td>${CurrentUser.email}
    </td>
 </tr>
-<tr bgcolor="#F2F4FB">
+<tr bgcolor="#FFFFE1">
     <td width="150">生日:</td>
-    <td>${birthday}
+    <td>${CurrentUser.birthday}
    </td>
 </tr>
 <tr bgcolor="#FFFFE1">
     <td>性別</td>
-    <td>${gender}
+    <td>${CurrentUser.gender}
     </td>
 </tr>
-<tr bgcolor="#F2F4FB">
+<tr bgcolor="#FFFFE1">
     <td>連絡電話:</td>
-    <td>${cellphone}
+    <td>${CurrentUser.cellphone}
     </td>
 </tr>
-<tr bgcolor="#F2F4FB">
+<tr bgcolor="#FFFFE1">
     <td>連絡地址:</td>
-    <td>${address}
+    <td>${CurrentUser.address}
+    </td>
+</tr>
+<tr bgcolor="#FFFFE1">
+    <td>個人照片:</td>
+    <td><img width='150' height='200' src= "${CurrentUser.pictureString} ">
     </td>
 </tr>
 </table>
+</form>
 </center>
 <center>
 <br>
-<button onclick="window.location.href='updateForm.do';" >修改個人資料</button>
+<button onclick="window.location.href='updateuserinfo';" >修改個人資料</button>
 <button onclick="reconfirm();" >刪除個人帳號</button>
 <button onclick="window.location.href='./logout';" >登出</button>
 </center>

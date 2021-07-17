@@ -8,9 +8,6 @@ public class BaseController {
 	
 	@GetMapping("/")
 	public String index() {
-		
 		return "index";
 	}
-	
-	
 }
