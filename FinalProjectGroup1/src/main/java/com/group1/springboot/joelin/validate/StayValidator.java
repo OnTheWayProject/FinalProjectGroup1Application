@@ -23,7 +23,7 @@ public class StayValidator implements Validator {
 		Stay stay =(Stay) target;
 		ValidationUtils.rejectIfEmpty(errors, "number", "stay.number.notempty",  "編號不能是空白(D.V.)");
 		ValidationUtils.rejectIfEmpty(errors, "hotel", "stay.hotel.notempty","名稱不能是空白(D.V.)");
-		ValidationUtils.rejectIfEmpty(errors, "phone", "stay.phone.notempty", "價格不能是空白(D.V.)");
+		ValidationUtils.rejectIfEmpty(errors, "price", "stay.price.notempty", "價格不能是空白(D.V.)");
 		
 //       if(event.getName() == null) {
 //	}

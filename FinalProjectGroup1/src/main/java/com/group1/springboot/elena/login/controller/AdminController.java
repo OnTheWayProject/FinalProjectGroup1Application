@@ -51,6 +51,11 @@ public class AdminController {
 	public String gotoexciseLoginPage() {
 		return "Elena/loginSystem";
 	}
+	
+	@GetMapping("/gotoAdminHomePage")
+	public String gotoAdminHomePage() {
+		return "Elena/AdminHomePage";
+	}
 
 	@GetMapping("/exciseSelectAll")
 	public String gotoexciseSelectAll() {
@@ -60,23 +65,6 @@ public class AdminController {
 	@PostMapping("/exciseLogin")
 	public String exciseLoginPage(@RequestParam(name = "userName") String user,
 			@RequestParam(name = "userPwd") String pwd, Model m, SessionStatus status) {
-
-//			Map<String, String> errors = new HashMap<String, String>();
-//
-//			m.addAttribute("errors", errors);
-//
-//			if (user == null || user.length() == 0) {
-//				errors.put("username", "username is required");
-//
-//			}
-//
-//			if (pwd == null || pwd.length() == 0) {
-//				errors.put("userpwd", "password is required");
-//			}
-//
-//			if (errors != null && !errors.isEmpty()) {
-//				return "loginSystem";
-//			}
 
 		if (user == "manager123" && pwd == "123") {
 			return "redirect:/exciseSelectAll";
@@ -94,8 +82,8 @@ public class AdminController {
 	// 查詢單筆AJAX
 	@GetMapping(path = "/exciseSelect.controller/{id}", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public CustomerBean read(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("id", id);
+	public CustomerBean read(@PathVariable("id") Integer id) {
+//		model.addAttribute("id", id);
 
 		return adminService.selectUser(id);
 	}

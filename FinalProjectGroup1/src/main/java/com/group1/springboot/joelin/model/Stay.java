@@ -25,7 +25,7 @@ public class Stay {
 	
 	private String hotel;                 //名稱
 	
-	private String phone;               //價格
+	private Integer price;               //價格
 	
 	private Double longitude;             //經度
 	
@@ -48,12 +48,12 @@ public class Stay {
 	String pictureString;
 	
 	
-	public Stay(Long number, String hotel, String phone, Double longitude, Double latitude, String address,String content,
+	public Stay(Long number, String hotel, Integer price, Double longitude, Double latitude, String address,String content,
 			Blob picture ,String mimeType) {
 		super();
 		this.number = number;
 		this.hotel = hotel;
-		this.phone = phone;
+		this.price = price;
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.address = address;
@@ -63,12 +63,12 @@ public class Stay {
 	}
 
 
-	public Stay(Long number, String hotel, String phone, Double longitude, Double latitude, String address,
+	public Stay(Long number, String hotel, Integer price, Double longitude, Double latitude, String address,
 			String mimeType, String content, Blob picture, MultipartFile stayImage, String pictureString) {
 		super();
 		this.number = number;
 		this.hotel = hotel;
-		this.phone = phone;
+		this.price = price;
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.address = address;
@@ -107,13 +107,13 @@ public class Stay {
 	}
 
 
-	public String getPhone() {
-		return phone;
+	public Integer getPrice() {
+		return price;
 	}
 
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
 
@@ -212,8 +212,8 @@ public class Stay {
 		builder.append(number);
 		builder.append(", hotel=");
 		builder.append(hotel);
-		builder.append(", phone=");
-		builder.append(phone);
+		builder.append(", price=");
+		builder.append(price);
 		builder.append(", longitude=");
 		builder.append(longitude);
 		builder.append(", latitude=");

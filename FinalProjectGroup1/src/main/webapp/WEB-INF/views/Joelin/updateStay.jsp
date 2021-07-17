@@ -17,8 +17,8 @@
             <td><form:input path="hotel"/></td>
         </tr>
         <tr>
-            <td>phone: </td>
-            <td><form:input path="phone"/></td>
+            <td>price: </td>
+            <td><form:input path="price"/></td>
         </tr>
         
         <tr>

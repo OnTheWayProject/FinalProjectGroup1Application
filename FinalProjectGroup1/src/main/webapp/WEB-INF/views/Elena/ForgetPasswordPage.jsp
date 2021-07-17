@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/TwentyTemplate/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="${pageContext.request.contextPath}/TwentyTemplate/assets/css/noscript.css" /></noscript>
+<title>忘記密碼</title>
 
     <style type="text/css">
         .regDiv {
@@ -22,19 +24,19 @@ border: 1px solid #D0D0D0;
 border-radius: 3% 3% 3% 3%;
 }
 
-.sendbutton{
-height:40px ;
-width: 593px;
+/* .sendbutton{ */
+/* height:40px ; */
+/* width: 593px; */
 
-border: 1px solid #7B7B7B;
-border-radius: 3% 3% 3% 3%;
+/* border: 1px solid #7B7B7B; */
+/* border-radius: 3% 3% 3% 3%; */
 
-background-color:#BEBEBE;
-margin: 15px 0px 15px 0px;
+/* background-color:#BEBEBE; */
+/* margin: 15px 0px 15px 0px; */
 
 
-font-weight:bold;
-}
+/* font-weight:bold; */
+/* } */
 
 .inputLbox
 {
@@ -75,7 +77,13 @@ function autoadd(){
 
 </head>
 <body>
-    <div class="regDiv">
+<%@include file="../Universal/navbar.jsp" %>
+
+<article id="main">
+<center>
+<h2>忘記密碼<br>
+<em>Forget Password</em></h1>
+ <div class="regDiv">
         <center>
         <form method="POST">
         請輸入註冊時所使用的信箱:
@@ -85,7 +93,13 @@ function autoadd(){
         </form>
         
       <button type="button" class="autoinputbutton" onclick="autoadd()">一鍵輸入</button></center> 
-    
+<br>    
+<a href= "<c:url value='/elena'/>">按此返回登入頁面</a>
 </div>
+
+</article>
+</center>
+
+<%@include file="../Universal/footer.jsp" %>	
 </body>
 </html>
