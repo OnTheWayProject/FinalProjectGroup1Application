@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class ProductType {
 	
 	@OneToMany(mappedBy="type")
-	Set<Place>  products = new HashSet<>();
+	Set<ProductInfo>  products = new HashSet<>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,18 +25,18 @@ public class ProductType {
 	public ProductType() {
 	}
 	
-	public ProductType(Set<Place> products, Integer typeId, String typeName) {
+	public ProductType(Set<ProductInfo> products, Integer typeId, String typeName) {
 		super();
 		this.products = products;
 		this.typeId = typeId;
 		this.typeName = typeName;
 	}
 
-	public Set<Place> getProducts() {
+	public Set<ProductInfo> getProducts() {
 		return products;
 	}
 
-	public void setProducts(Set<Place> products) {
+	public void setProducts(Set<ProductInfo> products) {
 		this.products = products;
 	}
 
@@ -55,26 +55,7 @@ public class ProductType {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ProductType [placeId=");
-		builder.append(placeId);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", address=");
-		builder.append(address);
-		builder.append(", longitude=");
-		builder.append(longitude);
-		builder.append(", latitude=");
-		builder.append(latitude);
-		builder.append(", link=");
-		builder.append(link);
-		builder.append(", hashCode=]" + hashCode());
-		return builder.toString();
-	}
+
 
 	
 	
