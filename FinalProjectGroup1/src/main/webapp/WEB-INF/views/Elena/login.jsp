@@ -65,7 +65,7 @@ border-radius: 3% 3% 3% 3%;
 							<em>Login</em></h1>
 						   <div class="login">
 								<legend >請輸入您的帳號及密碼</legend>
-								${Failed}<br>
+								<h1 style="color:red;">${Failed}</h1>
 							<!-- <center> -->
 		
 							<div>

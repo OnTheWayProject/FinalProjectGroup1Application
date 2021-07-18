@@ -150,7 +150,7 @@ Hello! ${CurrentUser.customerName}
 <center>
 <button onclick="window.location.href='updateuserinfo';" >修改個人資料</button>
 <!-- <button onclick="reconfirm();" >刪除個人帳號</button><br><br> -->
-<button onclick="window.location.href='./logout';" >登出</button><br>
+<button onclick="window.location.href='./gotoCustomerHomePage';" >返回會員中心</button><br>
 <br>
 </center>
 </article>

@@ -33,10 +33,10 @@
 </style>
 <script>
    function autoadd(){
-	    $("#idAccount").val("elena1011");
+	    $("#idAccount").val("elena123");
 		$("#idEmail").val("elena841011@gmail.com");	
-		$("#idPhone").val("0984023888");
-		$("#idPassword").val("user123@");
+		$("#idPhone").val("0984023800");
+		$("#idPassword").val("elena123@");
 		$("#idName").val("胡家瑜");
 		$("#idAddress").val("新北市蘆洲區長安街47號");
 		$("#idBday").val("1995-10-11");

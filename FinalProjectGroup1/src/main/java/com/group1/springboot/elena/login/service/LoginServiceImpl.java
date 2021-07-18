@@ -101,7 +101,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public boolean deleteCustomerById(Integer customerID) {
-		// TODO Auto-generated method stub
+		logindao.deleteCustomerById(customerID);
 		return false;
 	}
 
