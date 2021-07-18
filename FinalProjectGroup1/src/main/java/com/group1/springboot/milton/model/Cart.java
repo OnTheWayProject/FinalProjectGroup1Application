@@ -28,7 +28,27 @@ public class Cart  {
 	Integer productquantity;
 	Integer productprice;
 	Integer productamount;
+	Integer userOrderId;
+	Integer customerId;
 	
+	
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+	
+	
+	
+	public Integer getUserOrderId() {
+		return userOrderId;
+	}
+
+	public void setUserOrderId(Integer userOrderId) {
+		this.userOrderId = userOrderId;
+	}
 	@OneToOne
 	@JoinColumn(name = "productinfo")
 	ProductInfo productinfo;
@@ -100,17 +120,21 @@ public class Cart  {
 		this.productamount = productamount;
 	}
 
-	public Cart( int oredrid,Integer productid, String productname, Integer productquantity,
-			Integer productprice, Integer productamount) {
+
+	
+public Cart(Integer productid, String productname, Integer productquantity, Integer productprice,
+			Integer productamount, Integer userOrderId, Integer customerId) {
 		super();
-		
 		this.productid = productid;
 		this.productname = productname;
 		this.productquantity = productquantity;
 		this.productprice = productprice;
 		this.productamount = productamount;
+		this.userOrderId = userOrderId;
+		this.customerId = customerId;
 	}
-//	public String getTotalCurrencyFormat() {
+
+	//	public String getTotalCurrencyFormat() {
 //		NumberFormat currency = NumberFormat.getCurrencyInstance();
 //		return currency.format(this.getTotal());
 //	}

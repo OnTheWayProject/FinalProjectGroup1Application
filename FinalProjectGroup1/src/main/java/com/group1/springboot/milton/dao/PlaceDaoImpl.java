@@ -49,8 +49,8 @@ public class PlaceDaoImpl {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<Integer> getOrderId(){
-		String hql = "select max(orderId)+1 FROM Cart ";
+	public ArrayList<Integer> getUserOrderId(){
+		String hql = "select max(userOrderId)+1 FROM Cart ";
 		ArrayList<Integer> maxid = (ArrayList<Integer>) em.createQuery(hql).getResultList();
 		
 		return maxid;

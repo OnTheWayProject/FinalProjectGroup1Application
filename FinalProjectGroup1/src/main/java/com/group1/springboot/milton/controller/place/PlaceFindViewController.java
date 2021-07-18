@@ -244,34 +244,26 @@ public class PlaceFindViewController {
 		System.out.println("====");
 		System.out.println(productId);
 		Cart newCartItem = new Cart();
-
 		newCartItem.setProductInfo(placeService.findById(productId));
 		
 		System.out.println("產品資訊:" + newCartItem.getProductInfo().getProductname());
-				
-//		ArrayList<Integer> orderid = placeService.getOrderId();
-	
-//		result.add(Integer.parseInt(orderid.get(0)));
-//		Integer[] array = orderid.toArray(new Integer[orderid.size()]);
-	
-	
-//		System.out.println("新訂單id:"+ orderid.get(0));
-//		newCartItem.setOrderId(orderid.get(0));
 		
-		newCartItem.setOrderId(21);
+		//userorderid
+		ArrayList<Integer> userordeid = placeService.getUserOrderId();
+	
+		
 		newCartItem.setProductid(newCartItem.getProductInfo().getProductid());
 		newCartItem.setProductname(newCartItem.getProductInfo().getProductname());
 		newCartItem.setProductquantity(1);
 		newCartItem.setProductprice(newCartItem.getProductInfo().getProductprice());
 		newCartItem.setProductamount(0);
+		newCartItem.setUserOrderId(userordeid.get(0));
+		newCartItem.setCustomerId(1);
 		
-//		List<Cart> theCart = new ArrayList<>();
-//		session.setAttribute("cart",theCart);
-//		m.addAttribute("cart",theCart);
 		
 		boolean found = false;
 //		Iterator iter = theCart.iterator();
-		//有相同商品
+		//有相同商品(
 		for(Cart cart : theCart) {
 			if (cart.getProductid() == newCartItem.getProductInfo().getProductid()) {
 				//數量迭家
@@ -281,13 +273,6 @@ public class PlaceFindViewController {
 			}
 		}
 		
-//		while (!found && iter.hasNext()) {
-//			Cart aCartItem = (Cart) iter.next();
-//			if (aCartItem.getProductid() == newCartItem.getProductid()) {
-//				aCartItem.setProductquantity(aCartItem.getProductquantity() + newCartItem.getProductquantity());
-//				found = true;
-//			}
-//		}
 		//沒有相同商品
 		if (!found) { // Add it to the cart
 			theCart.add(newCartItem);
@@ -297,18 +282,6 @@ public class PlaceFindViewController {
 			System.out.println("移除_產品商品index:" + Integer.parseInt(cartindex));
 			theCart.remove(Integer.parseInt(cartindex));			
 		}
-	
-//		System.out.println("cartindex:"+ cartindex);
-//		System.out.println("todo:"+ todo);
-//		for(Cart cart : theCart) {
-//			int totalprice = 0;
-//			m.getAttribute("amount");
-//			totalprice += cart.getProductInfo().getProductprice();
-//			m.addAttribute("amount", totalprice);				
-//
-//			System.out.println("totalprice:" + totalprice);
-//			}
-		
 		
 		m.addAttribute("cart", theCart);									
 		return "Milton/insertRestaurant";
@@ -324,21 +297,29 @@ public class PlaceFindViewController {
 		List<Cart> theCart = (List<Cart>)m.getAttribute("cart");
 		for(Cart cart : theCart) {
 			
-			int cart_orderId = cart.getOrderId();
+			
 			Integer cart_productid = cart.getProductid();
 			String cart_productname = cart.getProductname();
 			Integer cart_productquantity = cart.getProductquantity();
 			Integer cart_productprice = cart.getProductprice();
 			Integer cart_productamount = cart.getProductamount();
-			System.out.println(cart_orderId);
+			Integer cart_userorderId = cart.getUserOrderId();
+			Integer cart_customerId = cart.getCustomerId();
+//			
 			System.out.println(cart_productid);
 			System.out.println(cart_productname);
 			System.out.println(cart_productquantity);
 			System.out.println(cart_productprice);
 			System.out.println(cart_productamount);
+			System.out.println(cart_userorderId);
+			System.out.println(cart_customerId);
+//			Cart CartItem = new Cart(cart_orderId,cart_productid,cart_productname,cart_productquantity,
+//					cart_productprice,cart_productamount);
 			
-			Cart CartItem = new Cart(cart_orderId,cart_productid,cart_productname,cart_productquantity,
-					cart_productprice,cart_productamount);
+			Cart CartItem = new Cart(cart_productid,cart_productname,cart_productquantity,
+					cart_productprice,cart_productamount,cart_userorderId,cart_customerId);
+			
+			
 			totalPrice += cart.getProductInfo().getProductprice();
 			placeService.save(CartItem);
 	
@@ -349,7 +330,6 @@ public class PlaceFindViewController {
 //		formatter.format("%.2f", totalPrice); 
 //		System.out.println("總金額:" + sb);
 		m.addAttribute("totalPrice",  totalPrice);
-		
 		
 		
 		return "Milton/shopCartCheckOutSuccess";

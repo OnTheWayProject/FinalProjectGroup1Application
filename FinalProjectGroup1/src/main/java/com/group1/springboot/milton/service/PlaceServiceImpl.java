@@ -58,8 +58,8 @@ public class PlaceServiceImpl {
 	public Map<String, Object> queryByName(String rname) {
 		return placeDao.queryByName(rname);
 	}
-	public ArrayList<Integer> getOrderId(){
-		return placeDao.getOrderId();
+	public ArrayList<Integer> getUserOrderId(){
+		return placeDao.getUserOrderId();
 	}
 	
 }
