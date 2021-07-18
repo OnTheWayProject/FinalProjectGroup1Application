@@ -78,7 +78,7 @@ function showData(textData){
 	} else {		
 	segment += "<tr><th colspan='8'>共計" + size + "筆資料</th><tr>";
 	*/
-	segment += "<thead ><tr><th width='13%'>&nbsp; 編號 </th><th width='40%'>&nbsp; 飯店 </th><th width='7%'>&nbsp; 價格 </th><th width='24%'>&nbsp; 地址 </th><th width='11%'>&nbsp; 照片 </th></tr></thead>";
+	segment += "<thead ><tr><th width='13%'>&nbsp; 編號 </th><th width='40%'>&nbsp; 飯店 </th><th width='7%'>&nbsp; 電話 </th><th width='24%'>&nbsp; 地址 </th><th width='11%'>&nbsp; 照片 </th></tr></thead>";
 	for(n = 0 ; n < stays.length ; n++ ){
 		let stay = stays[n];
 		let tmpurl1 ="<c:url value='/modifyStay/' />" + stay.number;
@@ -90,11 +90,11 @@ function showData(textData){
 		segment += "<tr >";
 		segment += "<td >&nbsp;" + stay.number +"&nbsp;</td>";
 		segment += "<td >&nbsp;" + tmpurl0 +"&nbsp;</td>";
-		segment += "<td >&nbsp;" + " $ " + stay.price  +"&nbsp;</td>";
+		segment += "<td >&nbsp;" + ' $ ' + stay.phone  +"&nbsp;</td>";
 		segment += "<td >&nbsp;"+ stay.address  +"&nbsp;</td>";
 		segment += "<td ><img width='100' height='60' src='" +stay.pictureString  +"'></td>";
 		
-		segment += "<td >&nbsp;<button  type='button' id='deleteData' onClick='window.location.reload();' data-href='" + tmpurl2 +"' data-value='" + stay.number+"'>刪除</button>&nbsp; </td>";
+		segment += "<td >&nbsp;<button  type='button' id='deleteData' data-href='" + tmpurl2 +"' data-value='" + stay.number+"'>刪除</button>&nbsp; </td>";
 // 		segment += "<td >&nbsp;<input type='submit' id='btnDel' value='刪除' onclick='location.href=<c:url value='/deleteStay/" +stay.number+ "'/>&nbsp; </td>";
 		
 		segment += "</tr>";
@@ -557,7 +557,7 @@ function showData(textData){
        divResult.innerHTML = "<font color='red' >"
        + result.fail + "</font>";
        } else if (result.success) {
-        window.location.href = "http://localhost:8080/FinalProjectGroup1/queryStay";
+        window.location.href = "http://localhost:8081/FinalProjectGroup1/queryStay";
           }                                                             
     } 
          

@@ -413,10 +413,10 @@
 		 <div class="col-sm-6">
 	   
 	    <tr>
-	      <td>價格：</td>
+	      <td>電話：</td>
 	   	  <td>
-	   	  	 <form:input path="price" style='width:100%;height:40px;'  /><br>&nbsp;
-	   	  	 <form:errors path='price'  cssClass="error" />
+	   	  	 <form:input path="phone" style='width:100%;height:40px;'  /><br>&nbsp;
+	   	  	 <form:errors path='phone'  cssClass="error" />
 	   	  </td>
 	      </tr>
 	 </div> 

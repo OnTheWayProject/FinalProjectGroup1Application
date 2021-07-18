@@ -95,7 +95,7 @@ window.addEventListener('load',function(){
 	dataArea = document.getElementById("dataArea");
 	let xhr = new XMLHttpRequest();
 	
-	xhr.open('GET', "<c:url value='/findAll' />", true);
+	xhr.open('GET', "<c:url value='/findEventAll' />", true);
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState == 4 && xhr.status == 200 ){
 		   console.log(xhr.responseText);
@@ -112,7 +112,7 @@ window.addEventListener('load',function(){
 		}
 		
 		let xhr2 = new XMLHttpRequest();
-		xhr2.open('GET', "<c:url value='/findByName' />?rname=" + rname);
+		xhr2.open('GET', "<c:url value='/findByEventName' />?rname=" + rname);
 		xhr2.send();
 		xhr2.onreadystatechange=function(){
 			if (xhr2.readyState == 4 && xhr2.status == 200){

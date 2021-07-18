@@ -24,7 +24,7 @@ public class TypeDaoImpl {
 	public List<ProductType> findRestaurantTypes() {
 		String hql = "FROM ProductType";
 		List<ProductType> list = em.createQuery(hql, ProductType.class).getResultList();
-		System.out.println(list);
+		
 		return list;
 	}
 	

@@ -144,17 +144,6 @@ public class StayController {
 		return "redirect:/queryStay";
 	}
 
-	
-	// 跳轉SpEventpage
-	  @GetMapping("/readSpStay/{number}")
-	  public String sendreadSpEventPage( 
-	    @PathVariable Long number,Model model
-	    ) {
-	   Stay stay = stayService.findByNumber(number);
-	   model.addAttribute("stay",stay);
-	   return "Joelin/readSpStay";
-	   
-	  }
 /*	
 	@GetMapping(value="/shoeEvent", produces = "application/json; charset=UTF-8")
 	public @ResponseBody Map<String, Object> findAll(){
@@ -198,7 +187,7 @@ public class StayController {
 				//======以下是將資料放進資料庫
 				String[] sa = line.split(",");
 				Long number = Long.parseLong(sa[0]);
-				Integer price = Integer.parseInt(sa[2].trim());
+				String phone = sa[2];
 				Double longitude = Double.parseDouble(sa[3].trim());
 				Double latitude = Double.parseDouble(sa[4].trim());
 				
@@ -206,7 +195,7 @@ public class StayController {
 				Blob blob = SystemUtils.pathToBlob(sa[7]);	
 				String mimeType = context.getMimeType(sa[7]);
 				
-				Stay stay = new Stay(number,sa[1],price,longitude,latitude,sa[5],sa[6],blob,mimeType);
+				Stay stay = new Stay(number,sa[1],phone,longitude,latitude,sa[5],sa[6],blob,mimeType);
 				
 				stayService.save(stay);
 				count++;

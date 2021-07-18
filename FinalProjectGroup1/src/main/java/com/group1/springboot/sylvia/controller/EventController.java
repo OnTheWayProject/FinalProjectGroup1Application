@@ -53,7 +53,7 @@ public class EventController {
 	@Autowired
 	EventValidator eventValidator;
 	
-	@GetMapping(value={"/findAll","/delAndQueryEvents"},produces = "application/json; charset=UTF-8")
+	@GetMapping(value={"/findEventAll","/delAndQueryEvents"},produces = "application/json; charset=UTF-8")
 	public @ResponseBody List<Event> findAll(){
 		return eventService.findAll();		
 	}
@@ -66,7 +66,7 @@ public class EventController {
 
 	
 	
-	@GetMapping(value="/queryByName", produces = "application/json; charset=UTF-8")
+	@GetMapping(value="/queryByEventName", produces = "application/json; charset=UTF-8")
 	public@ResponseBody List<Event> queryByName(
 			@RequestParam String name
 			){
@@ -137,7 +137,7 @@ public class EventController {
 		return eventService.findAll(); 
 	}
 */		
-	@GetMapping(value="/findByName", produces = "application/json; charset=UTF-8")
+	@GetMapping(value="/findByEventName", produces = "application/json; charset=UTF-8")
 	public @ResponseBody List<Event> findByName(
 			@RequestParam(value="rname",required=false) String rname
 			){

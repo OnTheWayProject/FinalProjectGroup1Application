@@ -19,12 +19,14 @@ public class clientController {
 	String filename;
 	
 	//ClientIndex.jsp
+	/*
 		@GetMapping("/client")
 		public String sendReadClientToInsert(Model model) {
 			model.addAttribute("client",new Event());
 			return "client/ClientIndex";
 			
 		}
+		*/
 		
 		//query-queryEvent.jsp
 				@GetMapping("/clientevent")

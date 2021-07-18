@@ -1,7 +1,5 @@
 package com.group1.springboot.milton.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.group1.springboot.milton.dao.PlaceDaoImpl;
 import com.group1.springboot.milton.dao.TypeDaoImpl;
-import com.group1.springboot.milton.model.Cart;
 import com.group1.springboot.milton.model.Place;
 import com.group1.springboot.milton.model.ProductInfo;
 import com.group1.springboot.milton.model.RestaurantType;
@@ -31,9 +28,10 @@ public class PlaceServiceImpl {
 	
 	
 	
-	public void save(Cart cart) {
-		
-		placeDao.save(cart);
+	public void save(Place place) {
+		RestaurantType type = typeDao.findById(place.getType().getTypeId());
+		place.setType(type);
+		placeDao.save(place);
 		
 	}
 	
@@ -43,8 +41,8 @@ public class PlaceServiceImpl {
 		return placeDao.findAll();
 	}
 	
-	public ProductInfo findById(Integer productId){
-		return placeDao.findById(productId);
+	public ProductInfo findById(Long id){
+		return placeDao.findById(id);
 	}
 	
 	public Map<String, Object> findByType(Integer typeId){
@@ -58,8 +56,4 @@ public class PlaceServiceImpl {
 	public Map<String, Object> queryByName(String rname) {
 		return placeDao.queryByName(rname);
 	}
-	public ArrayList<Integer> getUserOrderId(){
-		return placeDao.getUserOrderId();
-	}
-	
 }

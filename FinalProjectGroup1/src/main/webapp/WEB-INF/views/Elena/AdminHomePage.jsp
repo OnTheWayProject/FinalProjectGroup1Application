@@ -60,7 +60,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/gotoAdminHomePage'/>">
                 <div class="sidebar-brand-icon rotate-n-15">
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="${pageContext.request.contextPath}/AdminTemplate/img/white.png" alt="無法顯示圖片" width="100%"></div>
+                <div class="sidebar-brand-text mx-3"><img src="${pageContext.request.contextPath}/AdminTemplate/img/on the way.png" alt="無法顯示圖片" width="80%"></div>
             </a>
 
             <!-- 分隔線 -->
@@ -82,7 +82,7 @@
                 </div>
             </li>
                <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/exciseSelectAll'/>">
+                <a class="nav-link" href="Blogs.html">
                     <i class="fas fa-clipboard-list" aria-hidden="true"></i>
                     <span>訂單管理</span></a>
             </li>
@@ -98,7 +98,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <!-- <h6 class="collapse-header">Custom Utilities:</h6>-->
-                        <a class="collapse-item" href="<c:url value='/exciseSelectAll'/>">全部住宿</a>
+                        <a class="collapse-item" href="AllStay.html">全部住宿</a>
                         <a class="collapse-item" href="Stay.html">私人民宿</a>
                     <!--     <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a> -->
@@ -108,6 +108,18 @@
 
           <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+<<<<<<< HEAD
+			    <a class="nav-link" href="<c:url value='/wade' />">
+			       <i class="fas fa-car-alt" aria-hidden="true"></i>
+			       <span>交通商品管理</span>
+			</a>
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                    
+                    </div>
+                </div>
+			</li>
+=======
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2"
                     aria-expanded="true" aria-controls="collapse2">
                     <i class="fas fa-car-alt" aria-hidden="true"></i>
@@ -122,6 +134,7 @@
                     </div>
                 </div>
             </li>
+>>>>>>> e10cde8d8da6357096ea8c243bd8b98c4a96bbdb
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -407,7 +420,7 @@
 </tr>
 
 <tr>
-<td><a href="<c:url value='/exciseSelectAll'/>"></a><img src="ImagesAdmin/hotelsicon.png" alt="無法顯示圖片" width="30%"></a>
+<td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/hotelsicon.png" alt="無法顯示圖片" width="30%"></a>
 </td>
 <td><a href="<c:url value='/exciseSelectAll'/>"><img src="ImagesAdmin/rentcar.jpg" alt="無法顯示圖片" width="30%"></a>
 </td>

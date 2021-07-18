@@ -17,8 +17,7 @@
 <body>
 
 <header id="header">
-					<h1 id="logo"><a href="<c:url value="/"/>">
-					<img src="${pageContext.request.contextPath}/AdminTemplate/img/Blue.png" alt="無法顯示圖片" width="8%"></h1></a>
+					<h1 id="logo"><a href="<c:url value="/"/>">On <span> The Way</span></a></h1>
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="<c:url value="/"/>">首頁</a></li>
@@ -27,8 +26,10 @@
 								<li class="submenu">
 								<a href="#">住宿</a>
 								<ul>
-									<li><a href="<c:url value="/hotelstay"/>">旅館瀏覽</a></li>
-									<li><a href="<c:url value="/clientstay"/>">補助專區</a></li>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</li>
 
@@ -74,7 +75,8 @@
 								<ul>
 									<li><a href="<c:url value="/elena/gotoCustomerHomePage"/>">會員中心</a></li>
 									<li><a href="right-sidebar.html">訂單查詢</a></li>
-									<li><a href="<c:url value="/elena/logout"/>">登出</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</li>
 								

@@ -28,7 +28,7 @@ public class GameController {
 		return gameService.findGameAll();
 	}
 	
-	@GetMapping(value="/findbynumber/{number}",produces = "application/json; charset=UTF-8")
+	@GetMapping(value="/findbyGameNumber/{number}",produces = "application/json; charset=UTF-8")
 	public@ResponseBody Game findbynumber(
 			@PathVariable Long number
 			) {
